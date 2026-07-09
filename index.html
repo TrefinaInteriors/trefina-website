@@ -117,7 +117,7 @@
   .hero h1 em{ font-style:italic; color:var(--terracotta); font-weight:400; }
   .hero p.lede{
     font-size:17px; line-height:1.65; color:var(--ink-soft);
-    max-width:440px; margin:26px 0 34px;
+    max-width:460px; margin:26px 0 34px;
   }
   .hero-actions{ display:flex; gap:16px; align-items:center; }
   .hero-actions .note{ font-family:'Space Mono', monospace; font-size:11px; color:var(--ink-soft); letter-spacing:0.06em; }
@@ -164,7 +164,7 @@
 
   /* ---------- Services ---------- */
   .services-grid{
-    display:grid; grid-template-columns:repeat(4,1fr); gap:1px;
+    display:grid; grid-template-columns:repeat(3,1fr); gap:1px;
     background:var(--line); border:1px solid var(--line);
   }
   .service{ background:var(--cream); padding:40px 28px; }
@@ -214,17 +214,15 @@
     .process-row p{ grid-column:2; margin-top:8px; }
   }
 
-  /* ---------- Testimonial ---------- */
+  /* ---------- Values ---------- */
   .testimonial{ text-align:center; }
   .testimonial blockquote{
     font-family:'Fraunces', serif; font-style:italic; font-weight:400;
     font-size:clamp(24px,3.4vw,38px); line-height:1.5; max-width:820px;
     margin:0 auto 32px;
   }
-  .testimonial .who{ display:flex; align-items:center; justify-content:center; gap:14px; }
-  .testimonial .swatch{ width:40px; height:40px; border-radius:50%; background:var(--terracotta); }
-  .testimonial .who .name{ font-size:14px; font-weight:500; }
-  .testimonial .who .role{ font-size:13px; color:var(--ink-soft); }
+  .values-row{ display:flex; align-items:center; justify-content:center; gap:14px; flex-wrap:wrap; color:var(--terracotta-deep); }
+  .values-row .dot{ color:var(--line); }
 
   /* ---------- CTA / Contact ---------- */
   .cta{ background:var(--cream-2); }
@@ -232,8 +230,8 @@
   .cta h2{ font-size:clamp(30px,3.6vw,44px); line-height:1.1; margin-bottom:20px; }
   .cta p{ color:var(--ink-soft); line-height:1.65; max-width:420px; }
   .contact-detail{ margin-top:36px; display:flex; flex-direction:column; gap:14px; }
-  .contact-detail .row{ display:flex; gap:14px; align-items:center; font-size:14.5px; }
-  .contact-detail .row .k{ color:var(--ink-soft); width:80px; flex-shrink:0; font-size:12px; letter-spacing:.05em; }
+  .contact-detail .row{ display:flex; gap:14px; align-items:flex-start; font-size:14.5px; }
+  .contact-detail .row .k{ color:var(--ink-soft); width:80px; flex-shrink:0; font-size:12px; letter-spacing:.05em; padding-top:2px; }
   form{ display:flex; flex-direction:column; gap:18px; }
   .field{ display:flex; flex-direction:column; gap:8px; }
   .field label{ font-size:12px; letter-spacing:0.05em; color:var(--ink-soft); font-family:'Space Mono',monospace; }
@@ -295,9 +293,9 @@
 <section class="hero">
   <div class="wrap hero-grid">
     <div>
-      <div class="label eyebrow">FIT-OUT &amp; DEVELOPMENT</div>
-      <h1>Spaces built<br>for how you <em>actually</em><br>work and live.</h1>
-      <p class="lede">Trefina Interiors delivers commercial and residential fit-outs from first sketch to final handover — one team, one timeline, no gaps for things to fall through.</p>
+      <div class="label eyebrow">CIVIL WORKS &amp; INTERIOR FIT-OUT</div>
+      <h1>Spaces designed<br>and <em>built</em><br>under one roof.</h1>
+      <p class="lede">Trefina Interiors LLC has delivered interior fit-outs across the UAE since 2020 — from concept design through MEP, joinery, metalwork, paint and flooring, handled by one in-house team.</p>
       <div class="hero-actions">
         <a href="#contact" class="btn">Start Your Project</a>
         <a href="#projects" class="btn btn-ghost">View Our Work</a>
@@ -305,11 +303,11 @@
     </div>
     <div class="hero-visual">
       <div class="arch arch-outline">
-        <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=80&w=1000&auto=format&fit=crop" alt="Modern interior fit-out with warm wood tones and arched doorway">
+        <img src="images/hero-majlis-lounge.jpg" alt="Ornate majlis lounge with custom mother-of-pearl inlaid joinery, a Trefina Interiors project">
       </div>
       <div class="hero-tag">
-        <div class="num">120+</div>
-        <div class="desc">fit-outs delivered across retail, hospitality and residential spaces</div>
+        <div class="num">2020</div>
+        <div class="desc">the year Trefina Interiors began delivering fit-outs across the UAE</div>
       </div>
     </div>
   </div>
@@ -317,16 +315,16 @@
 
 <section class="stats">
   <div class="wrap">
-    <div class="stat"><div class="n">14</div><div class="label l">YEARS TRADING</div></div>
-    <div class="stat"><div class="n">120+</div><div class="label l">PROJECTS DELIVERED</div></div>
-    <div class="stat"><div class="n">98%</div><div class="label l">ON-TIME HANDOVER</div></div>
-    <div class="stat"><div class="n">40+</div><div class="label l">TRADES IN-HOUSE</div></div>
+    <div class="stat"><div class="n">2020</div><div class="label l">FOUNDED IN THE UAE</div></div>
+    <div class="stat"><div class="n">10</div><div class="label l">SPECIALIZED SERVICES</div></div>
+    <div class="stat"><div class="n">6</div><div class="label l">LANDMARK PROJECTS</div></div>
+    <div class="stat"><div class="n">3</div><div class="label l">SECTORS SERVED</div></div>
   </div>
 </section>
 
 <section class="section philosophy">
   <div class="wrap">
-    <p class="statement">We think a fit-out should feel like <span class="hl">one conversation</span>, not four handoffs between a designer, a contractor, a project manager and a snagging list. So we kept it as one team — design, build and manage, under one roof.</p>
+    <p class="statement">Our work is guided by <span class="hl">excellence, innovation, reliability and a client-driven approach</span> — one team handling everything from first idea to final fit-out, so nothing gets lost between design and delivery.</p>
   </div>
 </section>
 
@@ -334,29 +332,39 @@
   <div class="wrap">
     <div class="section-head">
       <div class="label">WHAT WE DO</div>
-      <h2>Four disciplines, one accountable team.</h2>
+      <h2>Six disciplines, one accountable team.</h2>
       <p>From the first concept sketch to the final coat of paint, every stage is handled in-house — so nothing gets lost in translation between trades.</p>
     </div>
     <div class="services-grid">
       <div class="service">
         <svg class="icon" viewBox="0 0 48 48" fill="none"><path d="M10 42V22C10 13 16 7 24 7C32 7 38 13 38 22V42" stroke="#D9622E" stroke-width="2.4"/><path d="M17 27C17 24 20 21 24 21C28 21 31 24 31 27" stroke="#D9622E" stroke-width="2.4"/></svg>
-        <h3>Interior Design</h3>
-        <p>Concept, spatial planning and material selection tailored to how the space will actually be used.</p>
+        <h3>Interior Design Consulting</h3>
+        <p>From first idea to construction-ready design — layouts, materials and concepts refined with you at every step.</p>
       </div>
       <div class="service">
         <svg class="icon" viewBox="0 0 48 48" fill="none"><rect x="9" y="9" width="30" height="30" rx="2" stroke="#D9622E" stroke-width="2.4"/><path d="M9 20H39M20 9V39" stroke="#D9622E" stroke-width="2.4"/></svg>
-        <h3>Fit-Out &amp; Build</h3>
-        <p>Full construction and installation delivered by our own site teams — no subcontractor guesswork.</p>
+        <h3>Civil Works</h3>
+        <p>Structural and civil groundwork completed to the same standard as the finish that goes on top of it.</p>
       </div>
       <div class="service">
         <svg class="icon" viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="15" stroke="#D9622E" stroke-width="2.4"/><path d="M24 16V24L29 28" stroke="#D9622E" stroke-width="2.4"/></svg>
-        <h3>Project Management</h3>
-        <p>A single point of contact from kickoff to handover, with a schedule you can actually see.</p>
+        <h3>MEP &amp; Electrical</h3>
+        <p>Mechanical, electrical and plumbing systems, engineered, consulted on and installed by our own teams.</p>
       </div>
       <div class="service">
         <svg class="icon" viewBox="0 0 48 48" fill="none"><path d="M12 36V16L24 8L36 16V36" stroke="#D9622E" stroke-width="2.4"/><path d="M19 36V25H29V36" stroke="#D9622E" stroke-width="2.4"/></svg>
-        <h3>Furnishing &amp; Styling</h3>
-        <p>Sourced fixtures, furniture and finishing touches that complete the space on brand and on budget.</p>
+        <h3>Custom Joinery &amp; Metalwork</h3>
+        <p>Bespoke joinery and precision metal fabrication, built in-house to fit the space exactly.</p>
+      </div>
+      <div class="service">
+        <svg class="icon" viewBox="0 0 48 48" fill="none"><path d="M8 38H40" stroke="#D9622E" stroke-width="2.4"/><path d="M12 38V18L24 10L36 18V38" stroke="#D9622E" stroke-width="2.4"/><path d="M19 38V27H29V38" stroke="#D9622E" stroke-width="2.4"/></svg>
+        <h3>Paint, Tiling &amp; Flooring</h3>
+        <p>Precision paint and texture application, tiling, woodwork and expert flooring services.</p>
+      </div>
+      <div class="service">
+        <svg class="icon" viewBox="0 0 48 48" fill="none"><rect x="8" y="14" width="32" height="20" rx="2" stroke="#D9622E" stroke-width="2.4"/><path d="M8 24H40" stroke="#D9622E" stroke-width="2.4"/></svg>
+        <h3>Material &amp; Furniture Procurement</h3>
+        <p>Sourcing quality materials, furniture and accessories to complete the space, on brand and on budget.</p>
       </div>
     </div>
   </div>
@@ -366,54 +374,54 @@
   <div class="wrap">
     <div class="section-head">
       <div class="label">SELECTED WORK</div>
-      <h2>Recent fit-outs.</h2>
-      <p>A few of the spaces we've taken from brief to build-out this year.</p>
+      <h2>Landmark projects across the UAE.</h2>
+      <p>A few of the clients and spaces we've delivered fit-outs for since 2020.</p>
     </div>
 
     <div class="project">
       <div class="arch">
-        <img src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?q=80&w=1000&auto=format&fit=crop" alt="Boutique hotel lobby fit-out">
+        <img src="images/kempinski-dining.jpg" alt="Finished dining and buffet counter fit-out at Kempinski Hotel, Downtown Dubai">
       </div>
       <div>
         <div class="label tag">HOSPITALITY</div>
-        <h3>Marlowe House Hotel Lobby</h3>
-        <p>A full reception and lounge fit-out for a 40-room boutique hotel, built around warm oak joinery and a custom lighting scheme.</p>
+        <h3>Kempinski Hotel, Downtown Dubai</h3>
+        <p>A hospitality fit-out for one of Dubai's landmark hotel brands, covering interior finishes, custom joinery and MEP works front-of-house.</p>
         <div class="meta">
-          <div><div class="k">DURATION</div><div class="v">11 weeks</div></div>
-          <div><div class="k">AREA</div><div class="v">3,200 sq ft</div></div>
-          <div><div class="k">SCOPE</div><div class="v">Design + Build</div></div>
+          <div><div class="k">CLIENT</div><div class="v">Kempinski</div></div>
+          <div><div class="k">SECTOR</div><div class="v">Hospitality</div></div>
+          <div><div class="k">LOCATION</div><div class="v">Downtown Dubai</div></div>
         </div>
       </div>
     </div>
 
     <div class="project">
       <div class="arch">
-        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1000&auto=format&fit=crop" alt="Modern office fit-out with wood and greenery">
+        <img src="images/du-call-center.jpg" alt="MEP and ceiling works in progress at the DU Call Center fit-out in Fujairah">
       </div>
       <div>
-        <div class="label tag">COMMERCIAL OFFICE</div>
-        <h3>Kettner &amp; Vale Headquarters</h3>
-        <p>A 60-desk office fit-out with acoustic meeting pods, a staff kitchen, and a phased build so the client's team never lost a working day.</p>
+        <div class="label tag">COMMERCIAL</div>
+        <h3>DU Call Center, Fujairah</h3>
+        <p>A full commercial office fit-out for du's call center facility, including MEP, partitioning and finishes throughout the floor.</p>
         <div class="meta">
-          <div><div class="k">DURATION</div><div class="v">9 weeks</div></div>
-          <div><div class="k">AREA</div><div class="v">5,600 sq ft</div></div>
-          <div><div class="k">SCOPE</div><div class="v">Full Fit-Out</div></div>
+          <div><div class="k">CLIENT</div><div class="v">du</div></div>
+          <div><div class="k">SECTOR</div><div class="v">Commercial</div></div>
+          <div><div class="k">LOCATION</div><div class="v">Fujairah</div></div>
         </div>
       </div>
     </div>
 
     <div class="project">
       <div class="arch">
-        <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=1000&auto=format&fit=crop" alt="Residential kitchen and living space renovation">
+        <img src="images/rixos-lobby.jpg" alt="Finished lobby corridor with cove lighting at Rixos Premium, Jumeirah Beach Residence">
       </div>
       <div>
-        <div class="label tag">RESIDENTIAL</div>
-        <h3>Cedar Lane Private Residence</h3>
-        <p>A ground-floor reconfiguration opening the kitchen into the living space, with bespoke cabinetry and a restrained, warm material palette.</p>
+        <div class="label tag">HOSPITALITY</div>
+        <h3>Rixos Premium, JBR</h3>
+        <p>Interior fit-out works for Rixos Premium in Jumeirah Beach Residence, from lobby and corridor finishes to custom lighting details.</p>
         <div class="meta">
-          <div><div class="k">DURATION</div><div class="v">7 weeks</div></div>
-          <div><div class="k">AREA</div><div class="v">1,450 sq ft</div></div>
-          <div><div class="k">SCOPE</div><div class="v">Design + Build</div></div>
+          <div><div class="k">CLIENT</div><div class="v">Rixos Premium</div></div>
+          <div><div class="k">SECTOR</div><div class="v">Hospitality</div></div>
+          <div><div class="k">LOCATION</div><div class="v">JBR, Dubai</div></div>
         </div>
       </div>
     </div>
@@ -431,17 +439,17 @@
       <div class="process-row">
         <div class="num">01</div>
         <h3>Consult</h3>
-        <p>We walk the space, talk through how you'll use it, and scope budget and timeline before anything is drawn.</p>
+        <p>We walk the space, understand how it will be used, and scope the work against budget and timeline.</p>
       </div>
       <div class="process-row">
         <div class="num">02</div>
         <h3>Design</h3>
-        <p>Layouts, materials and 3D visuals are refined with you until the plan is one you're confident signing off.</p>
+        <p>Ideas are converted into construction-ready designs — materials, layouts and MEP planned before anything is built.</p>
       </div>
       <div class="process-row">
         <div class="num">03</div>
         <h3>Build</h3>
-        <p>Our own site teams execute the fit-out to a fixed schedule, with weekly progress updates — no chasing required.</p>
+        <p>Our own teams handle civil works, MEP, joinery, metalwork, paint and flooring — one crew, no subcontractor handoffs.</p>
       </div>
       <div class="process-row">
         <div class="num">04</div>
@@ -454,13 +462,15 @@
 
 <section class="section testimonial">
   <div class="wrap">
-    <blockquote>"We'd been burned before by contractors who disappeared halfway through. Trefina were the first team who treated our timeline like it was their own."</blockquote>
-    <div class="who">
-      <div class="swatch"></div>
-      <div>
-        <div class="name">Priya Anand</div>
-        <div class="role">Operations Director, Marlowe House Hotel</div>
-      </div>
+    <blockquote>"Excellence, innovation, reliability and a client-driven approach — the values every Trefina Interiors project is built on."</blockquote>
+    <div class="values-row">
+      <span class="label">Excellence</span>
+      <span class="dot">·</span>
+      <span class="label">Innovation</span>
+      <span class="dot">·</span>
+      <span class="label">Reliability</span>
+      <span class="dot">·</span>
+      <span class="label">Client-Driven</span>
     </div>
   </div>
 </section>
@@ -470,14 +480,14 @@
     <div>
       <div class="label" style="color:var(--terracotta-deep); margin-bottom:16px;">GET IN TOUCH</div>
       <h2>Tell us about<br>your space.</h2>
-      <p>Share a few details and we'll come back to you within one working day with next steps — no obligation, no hard sell.</p>
+      <p>Share a few details and we'll come back to you with next steps — no obligation, no hard sell.</p>
       <div class="contact-detail">
-        <div class="row"><span class="k label">PHONE</span><span>+971 4 555 0148</span></div>
-        <div class="row"><span class="k label">EMAIL</span><span>hello@trefinainteriors.com</span></div>
-        <div class="row"><span class="k label">STUDIO</span><span>Al Quoz, Dubai, UAE</span></div>
+        <div class="row"><span class="k label">PHONE</span><span>+971 4 397 6433<br>+971 52 210 4286</span></div>
+        <div class="row"><span class="k label">EMAIL</span><span>info@trefinainteriors.com</span></div>
+        <div class="row"><span class="k label">ADDRESS</span><span>601, Al Danah Building, Hamdan Bin Mohammed Street, Abu Dhabi, UAE – 22208</span></div>
       </div>
     </div>
-    <form onsubmit="event.preventDefault(); this.querySelector('.form-note').textContent='Thanks — we\'ll be in touch within one working day.';">
+    <form onsubmit="event.preventDefault(); this.querySelector('.form-note').textContent='Thanks — we\'ll be in touch soon.';">
       <div class="row2">
         <div class="field"><label>NAME</label><input type="text" required></div>
         <div class="field"><label>COMPANY</label><input type="text"></div>
@@ -493,6 +503,7 @@
           <option>Retail</option>
           <option>Hospitality</option>
           <option>Residential</option>
+          <option>Industrial</option>
           <option>Other</option>
         </select>
       </div>
@@ -523,15 +534,15 @@
         </div>
         <div class="foot-col">
           <div class="label">CONTACT</div>
-          <div>+971 4 555 0148</div>
-          <div>hello@trefinainteriors.com</div>
-          <div>Al Quoz, Dubai, UAE</div>
+          <div>+971 4 397 6433</div>
+          <div>info@trefinainteriors.com</div>
+          <div>Abu Dhabi, UAE</div>
         </div>
       </div>
     </div>
     <div class="foot-bottom">
-      <div>© 2026 Trefina Interiors. All rights reserved.</div>
-      <div>Design &amp; Fit-Out for Commercial and Residential Spaces</div>
+      <div>© 2026 Trefina Interiors LLC. All rights reserved.</div>
+      <div>Design &amp; Fit-Out for Commercial, Industrial and Residential Spaces</div>
     </div>
   </div>
 </footer>
