@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trefina Interiors — Your Ideas. Our Expertise.</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Work+Sans:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap');
+
+  :root{
+    --cream:#F4EFE3;
+    --cream-2:#EFE8D8;
+    --ink:#232B29;
+    --ink-soft:#4A5350;
+    --terracotta:#D9622E;
+    --terracotta-deep:#B44E22;
+    --stone:#E3DAC4;
+    --line:#CBBFA0;
+    --espresso:#1B1E19;
+    --espresso-soft:#2A2E27;
+  }
+
+  *{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  body{
+    margin:0;
+    background:var(--cream);
+    color:var(--ink);
+    font-family:'Work Sans', sans-serif;
+    font-weight:400;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.serif{ font-family:'Fraunces', serif; font-weight:500; margin:0; }
+  .label{
+    font-family:'Space Mono', monospace;
+    text-transform:uppercase;
+    letter-spacing:0.16em;
+    font-size:12px;
+    font-weight:400;
+  }
+  a{ color:inherit; text-decoration:none; }
+  img{ display:block; max-width:100%; }
+  .wrap{ max-width:1180px; margin:0 auto; padding:0 32px; }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ animation:none !important; transition:none !important; }
+  }
+
+  /* ---------- Arch device ---------- */
+  .arch{
+    border-radius:400px 400px 12px 12px;
+    overflow:hidden;
+    position:relative;
+    background:var(--stone);
+  }
+  .arch img{ width:100%; height:100%; object-fit:cover; }
+  .arch-outline{
+    border-radius:400px 400px 0 0;
+    border:1.5px solid var(--terracotta);
+    border-bottom:none;
+  }
+
+  /* ---------- Nav ---------- */
+  header{
+    position:sticky; top:0; z-index:50;
+    background:rgba(244,239,227,0.92);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+  }
+  nav.wrap{
+    display:flex; align-items:center; justify-content:space-between;
+    height:84px;
+  }
+  .brand{ display:flex; align-items:center; gap:12px; }
+  .brand-mark{ width:30px; height:30px; flex-shrink:0; }
+  .brand-text{ display:flex; flex-direction:column; line-height:1; }
+  .brand-text .name{ font-family:'Fraunces', serif; font-size:21px; font-weight:500; }
+  .brand-text .sub{ font-family:'Space Mono', monospace; font-size:9px; letter-spacing:0.2em; color:var(--ink-soft); margin-top:3px; }
+  .navlinks{ display:flex; gap:40px; align-items:center; }
+  .navlinks a{
+    font-size:14px; letter-spacing:0.02em; color:var(--ink-soft);
+    position:relative; padding:4px 0;
+  }
+  .navlinks a:hover{ color:var(--ink); }
+  .navlinks a::after{
+    content:''; position:absolute; left:0; bottom:0; height:1px; width:0;
+    background:var(--terracotta); transition:width .25s ease;
+  }
+  .navlinks a:hover::after{ width:100%; }
+  .btn{
+    display:inline-flex; align-items:center; gap:8px;
+    background:var(--terracotta); color:var(--cream);
+    padding:11px 22px; border-radius:3px;
+    font-size:13px; letter-spacing:0.03em; font-weight:500;
+    border:1px solid var(--terracotta);
+    cursor:pointer; transition:background .2s ease, transform .2s ease;
+  }
+  .btn:hover{ background:var(--terracotta-deep); }
+  .btn-ghost{
+    background:transparent; color:var(--ink); border:1px solid var(--ink);
+  }
+  .btn-ghost:hover{ background:var(--ink); color:var(--cream); }
+  @media (max-width:860px){ .navlinks{ display:none; } }
+
+  /* ---------- Hero ---------- */
+  .hero{ padding:64px 0 40px; }
+  .hero-grid{
+    display:grid; grid-template-columns:1.05fr 0.95fr; gap:56px; align-items:center;
+  }
+  .eyebrow{ color:var(--terracotta-deep); margin-bottom:18px; display:flex; align-items:center; gap:10px; }
+  .eyebrow::before{ content:''; width:26px; height:1px; background:var(--terracotta); display:inline-block; }
+  .hero h1{
+    font-size:clamp(40px, 5.4vw, 68px);
+    line-height:1.04;
+    letter-spacing:-0.01em;
+  }
+  .hero h1 em{ font-style:italic; color:var(--terracotta); font-weight:400; }
+  .hero p.lede{
+    font-size:17px; line-height:1.65; color:var(--ink-soft);
+    max-width:440px; margin:26px 0 34px;
+  }
+  .hero-actions{ display:flex; gap:16px; align-items:center; }
+  .hero-actions .note{ font-family:'Space Mono', monospace; font-size:11px; color:var(--ink-soft); letter-spacing:0.06em; }
+  .hero-visual{ position:relative; }
+  .hero-visual .arch{ aspect-ratio:3/4; }
+  .hero-tag{
+    position:absolute; left:-24px; bottom:36px;
+    background:var(--ink); color:var(--cream);
+    padding:18px 22px; border-radius:3px;
+    max-width:230px; box-shadow:0 20px 40px -12px rgba(0,0,0,0.35);
+  }
+  .hero-tag .num{ font-family:'Fraunces', serif; font-size:26px; color:var(--terracotta); }
+  .hero-tag .desc{ font-size:12px; color:#D9D3C4; margin-top:4px; line-height:1.5; }
+  @media (max-width:900px){
+    .hero-grid{ grid-template-columns:1fr; }
+    .hero-tag{ left:16px; }
+  }
+
+  /* strip of clients / stats */
+  .stats{
+    border-top:1px solid var(--line); border-bottom:1px solid var(--line);
+    padding:28px 0;
+  }
+  .stats .wrap{ display:flex; justify-content:space-between; flex-wrap:wrap; gap:24px; }
+  .stat{ text-align:left; }
+  .stat .n{ font-family:'Fraunces', serif; font-size:32px; color:var(--terracotta-deep); }
+  .stat .l{ margin-top:2px; color:var(--ink-soft); }
+
+  /* ---------- Section heading pattern ---------- */
+  .section{ padding:120px 0; }
+  .section-head{ max-width:640px; margin-bottom:64px; }
+  .section-head .label{ color:var(--terracotta-deep); margin-bottom:16px; }
+  .section-head h2{ font-size:clamp(30px,3.6vw,44px); line-height:1.12; }
+  .section-head p{ color:var(--ink-soft); margin-top:18px; line-height:1.65; font-size:16px; }
+
+  /* ---------- Philosophy ---------- */
+  .philosophy{ background:var(--cream-2); }
+  .philosophy .statement{
+    font-family:'Fraunces', serif; font-weight:400; font-style:italic;
+    font-size:clamp(24px,3vw,36px); line-height:1.42; color:var(--ink);
+    max-width:900px;
+  }
+  .philosophy .statement .hl{ color:var(--terracotta); font-style:normal; font-weight:500; }
+
+  /* ---------- Services ---------- */
+  .services-grid{
+    display:grid; grid-template-columns:repeat(4,1fr); gap:1px;
+    background:var(--line); border:1px solid var(--line);
+  }
+  .service{ background:var(--cream); padding:40px 28px; }
+  .service .icon{ width:46px; height:46px; margin-bottom:26px; }
+  .service h3{ font-size:19px; margin-bottom:12px; }
+  .service p{ font-size:14px; color:var(--ink-soft); line-height:1.6; }
+  @media (max-width:900px){ .services-grid{ grid-template-columns:1fr 1fr; } }
+  @media (max-width:560px){ .services-grid{ grid-template-columns:1fr; } }
+
+  /* ---------- Projects ---------- */
+  .project{
+    display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:center;
+    margin-bottom:110px;
+  }
+  .project:last-child{ margin-bottom:0; }
+  .project:nth-child(even){ direction:rtl; }
+  .project:nth-child(even) > *{ direction:ltr; }
+  .project .arch{ aspect-ratio:4/5; }
+  .project .tag{ color:var(--terracotta-deep); margin-bottom:14px; }
+  .project h3{ font-size:clamp(24px,2.6vw,32px); margin-bottom:16px; }
+  .project p{ color:var(--ink-soft); line-height:1.7; font-size:15px; max-width:420px; }
+  .project .meta{
+    display:flex; gap:28px; margin-top:28px; padding-top:24px; border-top:1px solid var(--line);
+  }
+  .project .meta div .k{ font-size:11px; color:var(--ink-soft); letter-spacing:0.08em; }
+  .project .meta div .v{ font-family:'Fraunces', serif; font-size:16px; margin-top:4px; }
+  @media (max-width:860px){
+    .project, .project:nth-child(even){ grid-template-columns:1fr; direction:ltr; }
+  }
+
+  /* ---------- Process ---------- */
+  .process{ background:var(--espresso); color:var(--cream); }
+  .process .section-head p{ color:#B9B2A0; }
+  .process .section-head .label{ color:var(--terracotta); }
+  .process-list{ border-top:1px solid #3A3E35; }
+  .process-row{
+    display:grid; grid-template-columns:80px 1fr 1fr; gap:32px;
+    padding:34px 0; border-bottom:1px solid #3A3E35;
+    align-items:baseline;
+  }
+  .process-row .num{ font-family:'Fraunces', serif; font-style:italic; font-size:22px; color:var(--terracotta); }
+  .process-row h3{ font-size:22px; font-family:'Fraunces', serif; }
+  .process-row p{ color:#B9B2A0; font-size:14.5px; line-height:1.65; margin:0; }
+  @media (max-width:760px){
+    .process-row{ grid-template-columns:50px 1fr; }
+    .process-row h3{ grid-column:2; }
+    .process-row p{ grid-column:2; margin-top:8px; }
+  }
+
+  /* ---------- Testimonial ---------- */
+  .testimonial{ text-align:center; }
+  .testimonial blockquote{
+    font-family:'Fraunces', serif; font-style:italic; font-weight:400;
+    font-size:clamp(24px,3.4vw,38px); line-height:1.5; max-width:820px;
+    margin:0 auto 32px;
+  }
+  .testimonial .who{ display:flex; align-items:center; justify-content:center; gap:14px; }
+  .testimonial .swatch{ width:40px; height:40px; border-radius:50%; background:var(--terracotta); }
+  .testimonial .who .name{ font-size:14px; font-weight:500; }
+  .testimonial .who .role{ font-size:13px; color:var(--ink-soft); }
+
+  /* ---------- CTA / Contact ---------- */
+  .cta{ background:var(--cream-2); }
+  .cta-grid{ display:grid; grid-template-columns:1fr 1fr; gap:72px; }
+  .cta h2{ font-size:clamp(30px,3.6vw,44px); line-height:1.1; margin-bottom:20px; }
+  .cta p{ color:var(--ink-soft); line-height:1.65; max-width:420px; }
+  .contact-detail{ margin-top:36px; display:flex; flex-direction:column; gap:14px; }
+  .contact-detail .row{ display:flex; gap:14px; align-items:center; font-size:14.5px; }
+  .contact-detail .row .k{ color:var(--ink-soft); width:80px; flex-shrink:0; font-size:12px; letter-spacing:.05em; }
+  form{ display:flex; flex-direction:column; gap:18px; }
+  .field{ display:flex; flex-direction:column; gap:8px; }
+  .field label{ font-size:12px; letter-spacing:0.05em; color:var(--ink-soft); font-family:'Space Mono',monospace; }
+  .field input, .field select, .field textarea{
+    font-family:'Work Sans', sans-serif; font-size:15px;
+    background:transparent; border:none; border-bottom:1px solid var(--line);
+    padding:10px 2px; color:var(--ink); outline:none;
+  }
+  .field input:focus, .field select:focus, .field textarea:focus{ border-color:var(--terracotta); }
+  .row2{ display:grid; grid-template-columns:1fr 1fr; gap:18px; }
+  .form-note{ font-size:12px; color:var(--ink-soft); margin-top:6px; }
+  @media (max-width:860px){ .cta-grid{ grid-template-columns:1fr; } }
+
+  /* ---------- Footer ---------- */
+  footer{ background:var(--espresso); color:#B9B2A0; padding:64px 0 32px; position:relative; overflow:hidden; }
+  .foot-top{ display:flex; justify-content:space-between; flex-wrap:wrap; gap:40px; padding-bottom:48px; border-bottom:1px solid #3A3E35; }
+  .foot-brand .name{ font-family:'Fraunces', serif; font-size:24px; color:var(--cream); }
+  .foot-brand .sub{ font-family:'Space Mono', monospace; font-size:10px; letter-spacing:0.18em; margin-top:6px; }
+  .foot-cols{ display:flex; gap:64px; flex-wrap:wrap; }
+  .foot-col .label{ color:#7A7568; margin-bottom:16px; }
+  .foot-col a, .foot-col div{ display:block; font-size:14px; margin-bottom:10px; color:#D9D3C4; }
+  .foot-col a:hover{ color:var(--terracotta); }
+  .foot-bottom{ display:flex; justify-content:space-between; padding-top:28px; font-size:12.5px; color:#7A7568; flex-wrap:wrap; gap:12px; }
+  .foot-arch{
+    position:absolute; right:-60px; bottom:-80px; width:340px; height:340px;
+    border:1.5px solid #333629; border-radius:400px 400px 0 0; opacity:0.6;
+  }
+
+  ::selection{ background:var(--terracotta); color:var(--cream); }
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="wrap">
+    <div class="brand">
+      <svg class="brand-mark" viewBox="0 0 100 100" fill="none">
+        <path d="M20 90V45C20 25 33 12 50 12C67 12 80 25 80 45V90" stroke="#D9622E" stroke-width="5"/>
+        <line x1="50" y1="20" x2="50" y2="42" stroke="#D9622E" stroke-width="5"/>
+        <rect x="42" y="42" width="16" height="8" rx="3" stroke="#D9622E" stroke-width="5"/>
+        <path d="M30 58C30 50 39 44 50 44C61 44 70 50 70 58" stroke="#D9622E" stroke-width="5"/>
+        <path d="M40 58C40 63 44 67 50 67C56 67 60 63 60 58" stroke="#D9622E" stroke-width="5"/>
+      </svg>
+      <div class="brand-text">
+        <span class="name">Trefina <span style="font-size:12px; letter-spacing:.18em; font-family:'Space Mono',monospace;">INTERIORS</span></span>
+        <span class="sub">YOUR IDEAS. OUR EXPERTISE.</span>
+      </div>
+    </div>
+    <div class="navlinks">
+      <a href="#services">Services</a>
+      <a href="#projects">Projects</a>
+      <a href="#process">Process</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <a href="#contact" class="btn">Request a Quote</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="label eyebrow">FIT-OUT &amp; DEVELOPMENT</div>
+      <h1>Spaces built<br>for how you <em>actually</em><br>work and live.</h1>
+      <p class="lede">Trefina Interiors delivers commercial and residential fit-outs from first sketch to final handover — one team, one timeline, no gaps for things to fall through.</p>
+      <div class="hero-actions">
+        <a href="#contact" class="btn">Start Your Project</a>
+        <a href="#projects" class="btn btn-ghost">View Our Work</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="arch arch-outline">
+        <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=80&w=1000&auto=format&fit=crop" alt="Modern interior fit-out with warm wood tones and arched doorway">
+      </div>
+      <div class="hero-tag">
+        <div class="num">120+</div>
+        <div class="desc">fit-outs delivered across retail, hospitality and residential spaces</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="stats">
+  <div class="wrap">
+    <div class="stat"><div class="n">14</div><div class="label l">YEARS TRADING</div></div>
+    <div class="stat"><div class="n">120+</div><div class="label l">PROJECTS DELIVERED</div></div>
+    <div class="stat"><div class="n">98%</div><div class="label l">ON-TIME HANDOVER</div></div>
+    <div class="stat"><div class="n">40+</div><div class="label l">TRADES IN-HOUSE</div></div>
+  </div>
+</section>
+
+<section class="section philosophy">
+  <div class="wrap">
+    <p class="statement">We think a fit-out should feel like <span class="hl">one conversation</span>, not four handoffs between a designer, a contractor, a project manager and a snagging list. So we kept it as one team — design, build and manage, under one roof.</p>
+  </div>
+</section>
+
+<section class="section" id="services">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="label">WHAT WE DO</div>
+      <h2>Four disciplines, one accountable team.</h2>
+      <p>From the first concept sketch to the final coat of paint, every stage is handled in-house — so nothing gets lost in translation between trades.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service">
+        <svg class="icon" viewBox="0 0 48 48" fill="none"><path d="M10 42V22C10 13 16 7 24 7C32 7 38 13 38 22V42" stroke="#D9622E" stroke-width="2.4"/><path d="M17 27C17 24 20 21 24 21C28 21 31 24 31 27" stroke="#D9622E" stroke-width="2.4"/></svg>
+        <h3>Interior Design</h3>
+        <p>Concept, spatial planning and material selection tailored to how the space will actually be used.</p>
+      </div>
+      <div class="service">
+        <svg class="icon" viewBox="0 0 48 48" fill="none"><rect x="9" y="9" width="30" height="30" rx="2" stroke="#D9622E" stroke-width="2.4"/><path d="M9 20H39M20 9V39" stroke="#D9622E" stroke-width="2.4"/></svg>
+        <h3>Fit-Out &amp; Build</h3>
+        <p>Full construction and installation delivered by our own site teams — no subcontractor guesswork.</p>
+      </div>
+      <div class="service">
+        <svg class="icon" viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="15" stroke="#D9622E" stroke-width="2.4"/><path d="M24 16V24L29 28" stroke="#D9622E" stroke-width="2.4"/></svg>
+        <h3>Project Management</h3>
+        <p>A single point of contact from kickoff to handover, with a schedule you can actually see.</p>
+      </div>
+      <div class="service">
+        <svg class="icon" viewBox="0 0 48 48" fill="none"><path d="M12 36V16L24 8L36 16V36" stroke="#D9622E" stroke-width="2.4"/><path d="M19 36V25H29V36" stroke="#D9622E" stroke-width="2.4"/></svg>
+        <h3>Furnishing &amp; Styling</h3>
+        <p>Sourced fixtures, furniture and finishing touches that complete the space on brand and on budget.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="projects" style="padding-top:0;">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="label">SELECTED WORK</div>
+      <h2>Recent fit-outs.</h2>
+      <p>A few of the spaces we've taken from brief to build-out this year.</p>
+    </div>
+
+    <div class="project">
+      <div class="arch">
+        <img src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?q=80&w=1000&auto=format&fit=crop" alt="Boutique hotel lobby fit-out">
+      </div>
+      <div>
+        <div class="label tag">HOSPITALITY</div>
+        <h3>Marlowe House Hotel Lobby</h3>
+        <p>A full reception and lounge fit-out for a 40-room boutique hotel, built around warm oak joinery and a custom lighting scheme.</p>
+        <div class="meta">
+          <div><div class="k">DURATION</div><div class="v">11 weeks</div></div>
+          <div><div class="k">AREA</div><div class="v">3,200 sq ft</div></div>
+          <div><div class="k">SCOPE</div><div class="v">Design + Build</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="project">
+      <div class="arch">
+        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1000&auto=format&fit=crop" alt="Modern office fit-out with wood and greenery">
+      </div>
+      <div>
+        <div class="label tag">COMMERCIAL OFFICE</div>
+        <h3>Kettner &amp; Vale Headquarters</h3>
+        <p>A 60-desk office fit-out with acoustic meeting pods, a staff kitchen, and a phased build so the client's team never lost a working day.</p>
+        <div class="meta">
+          <div><div class="k">DURATION</div><div class="v">9 weeks</div></div>
+          <div><div class="k">AREA</div><div class="v">5,600 sq ft</div></div>
+          <div><div class="k">SCOPE</div><div class="v">Full Fit-Out</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="project">
+      <div class="arch">
+        <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=1000&auto=format&fit=crop" alt="Residential kitchen and living space renovation">
+      </div>
+      <div>
+        <div class="label tag">RESIDENTIAL</div>
+        <h3>Cedar Lane Private Residence</h3>
+        <p>A ground-floor reconfiguration opening the kitchen into the living space, with bespoke cabinetry and a restrained, warm material palette.</p>
+        <div class="meta">
+          <div><div class="k">DURATION</div><div class="v">7 weeks</div></div>
+          <div><div class="k">AREA</div><div class="v">1,450 sq ft</div></div>
+          <div><div class="k">SCOPE</div><div class="v">Design + Build</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section process" id="process">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="label">HOW WE WORK</div>
+      <h2>From brief to handover, in four stages.</h2>
+      <p>The order matters — each stage is signed off before the next begins, so there are no surprises mid-build.</p>
+    </div>
+    <div class="process-list">
+      <div class="process-row">
+        <div class="num">01</div>
+        <h3>Consult</h3>
+        <p>We walk the space, talk through how you'll use it, and scope budget and timeline before anything is drawn.</p>
+      </div>
+      <div class="process-row">
+        <div class="num">02</div>
+        <h3>Design</h3>
+        <p>Layouts, materials and 3D visuals are refined with you until the plan is one you're confident signing off.</p>
+      </div>
+      <div class="process-row">
+        <div class="num">03</div>
+        <h3>Build</h3>
+        <p>Our own site teams execute the fit-out to a fixed schedule, with weekly progress updates — no chasing required.</p>
+      </div>
+      <div class="process-row">
+        <div class="num">04</div>
+        <h3>Handover</h3>
+        <p>A final walkthrough, snagging resolved on the spot where possible, and documentation for everything installed.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section testimonial">
+  <div class="wrap">
+    <blockquote>"We'd been burned before by contractors who disappeared halfway through. Trefina were the first team who treated our timeline like it was their own."</blockquote>
+    <div class="who">
+      <div class="swatch"></div>
+      <div>
+        <div class="name">Priya Anand</div>
+        <div class="role">Operations Director, Marlowe House Hotel</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section cta" id="contact">
+  <div class="wrap cta-grid">
+    <div>
+      <div class="label" style="color:var(--terracotta-deep); margin-bottom:16px;">GET IN TOUCH</div>
+      <h2>Tell us about<br>your space.</h2>
+      <p>Share a few details and we'll come back to you within one working day with next steps — no obligation, no hard sell.</p>
+      <div class="contact-detail">
+        <div class="row"><span class="k label">PHONE</span><span>+971 4 555 0148</span></div>
+        <div class="row"><span class="k label">EMAIL</span><span>hello@trefinainteriors.com</span></div>
+        <div class="row"><span class="k label">STUDIO</span><span>Al Quoz, Dubai, UAE</span></div>
+      </div>
+    </div>
+    <form onsubmit="event.preventDefault(); this.querySelector('.form-note').textContent='Thanks — we\'ll be in touch within one working day.';">
+      <div class="row2">
+        <div class="field"><label>NAME</label><input type="text" required></div>
+        <div class="field"><label>COMPANY</label><input type="text"></div>
+      </div>
+      <div class="row2">
+        <div class="field"><label>EMAIL</label><input type="email" required></div>
+        <div class="field"><label>PHONE</label><input type="tel"></div>
+      </div>
+      <div class="field">
+        <label>PROJECT TYPE</label>
+        <select>
+          <option>Commercial office</option>
+          <option>Retail</option>
+          <option>Hospitality</option>
+          <option>Residential</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>TELL US ABOUT THE SPACE</label>
+        <textarea rows="3"></textarea>
+      </div>
+      <button type="submit" class="btn" style="align-self:flex-start; margin-top:8px;">Send Enquiry</button>
+      <div class="form-note"></div>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="foot-arch"></div>
+  <div class="wrap">
+    <div class="foot-top">
+      <div class="foot-brand">
+        <div class="name">Trefina Interiors</div>
+        <div class="sub">YOUR IDEAS. OUR EXPERTISE.</div>
+      </div>
+      <div class="foot-cols">
+        <div class="foot-col">
+          <div class="label">STUDIO</div>
+          <a href="#services">Services</a>
+          <a href="#projects">Projects</a>
+          <a href="#process">Our Process</a>
+        </div>
+        <div class="foot-col">
+          <div class="label">CONTACT</div>
+          <div>+971 4 555 0148</div>
+          <div>hello@trefinainteriors.com</div>
+          <div>Al Quoz, Dubai, UAE</div>
+        </div>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <div>© 2026 Trefina Interiors. All rights reserved.</div>
+      <div>Design &amp; Fit-Out for Commercial and Residential Spaces</div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
