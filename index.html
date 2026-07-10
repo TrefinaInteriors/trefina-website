@@ -18,7 +18,7 @@
 <meta name="twitter:description" content="Interior fit-outs across the UAE since 2020 — civil works, MEP, custom joinery, metalwork, paint and flooring, handled by one in-house team.">
 <meta name="twitter:image" content="https://trefinainteriors.com/images/hero-majlis-lounge.jpg">
 
-<link rel="icon" href="images/logo.png" type="image/png">
+<link rel="icon" href="images/logo-icon.png" type="image/png">
 
 <script type="application/ld+json">
 {
@@ -27,10 +27,10 @@
   "name": "Trefina Interiors",
   "legalName": "Trefina Interiors LLC",
   "url": "https://trefinainteriors.com/",
-  "logo": "https://trefinainteriors.com/images/logo.png",
+  "logo": "https://trefinainteriors.com/images/logo-full.png",
   "image": "https://trefinainteriors.com/images/hero-majlis-lounge.jpg",
   "description": "Interior fit-out and design company delivering civil works, MEP, custom joinery, metalwork, paint and flooring across the UAE since 2020.",
-  "telephone": "+971-4-397-6433",
+  "telephone": "+971-52-245-7815",
   "email": "info@trefinainteriors.com",
   "foundingDate": "2020",
   "address": {
@@ -88,7 +88,25 @@
 
   @media (prefers-reduced-motion: reduce){
     *{ animation:none !important; transition:none !important; }
+    .reveal{ opacity:1 !important; transform:none !important; }
   }
+
+  /* ---------- Scroll reveal ---------- */
+  .reveal{
+    opacity:0; transform:translateY(28px);
+    transition:opacity .8s cubic-bezier(.16,1,.3,1), transform .8s cubic-bezier(.16,1,.3,1);
+  }
+  .reveal.is-visible{ opacity:1; transform:translateY(0); }
+  .services-grid .service:nth-child(1).reveal{ transition-delay:.05s; }
+  .services-grid .service:nth-child(2).reveal{ transition-delay:.12s; }
+  .services-grid .service:nth-child(3).reveal{ transition-delay:.19s; }
+  .services-grid .service:nth-child(4).reveal{ transition-delay:.05s; }
+  .services-grid .service:nth-child(5).reveal{ transition-delay:.12s; }
+  .services-grid .service:nth-child(6).reveal{ transition-delay:.19s; }
+  .process-row:nth-child(1).reveal{ transition-delay:.05s; }
+  .process-row:nth-child(2).reveal{ transition-delay:.13s; }
+  .process-row:nth-child(3).reveal{ transition-delay:.21s; }
+  .process-row:nth-child(4).reveal{ transition-delay:.29s; }
 
   /* ---------- Arch device ---------- */
   .arch{
@@ -97,7 +115,8 @@
     position:relative;
     background:var(--stone);
   }
-  .arch img{ width:100%; height:100%; object-fit:cover; }
+  .arch img{ width:100%; height:100%; object-fit:cover; transition:transform .7s cubic-bezier(.16,1,.3,1); }
+  .arch:hover img{ transform:scale(1.06); }
   .arch-outline{
     border-radius:400px 400px 0 0;
     border:1.5px solid var(--terracotta);
@@ -110,13 +129,15 @@
     background:rgba(244,239,227,0.92);
     backdrop-filter:blur(6px);
     border-bottom:1px solid var(--line);
+    transition:box-shadow .3s ease;
   }
+  header.scrolled{ box-shadow:0 6px 24px rgba(35,43,41,0.08); }
   nav.wrap{
     display:flex; align-items:center; justify-content:space-between;
     height:84px;
   }
   .brand{ display:flex; align-items:center; gap:12px; }
-  .brand-mark{ width:30px; height:30px; flex-shrink:0; }
+  .brand-mark{ width:30px; height:32px; flex-shrink:0; object-fit:contain; }
   .brand-text{ display:flex; flex-direction:column; line-height:1; }
   .brand-text .name{ font-family:'Fraunces', serif; font-size:21px; font-weight:500; }
   .brand-text .sub{ font-family:'Space Mono', monospace; font-size:9px; letter-spacing:0.2em; color:var(--ink-soft); margin-top:3px; }
@@ -139,11 +160,11 @@
     border:1px solid var(--terracotta);
     cursor:pointer; transition:background .2s ease, transform .2s ease;
   }
-  .btn:hover{ background:var(--terracotta-deep); }
+  .btn:hover{ background:var(--terracotta-deep); transform:translateY(-2px); box-shadow:0 8px 20px -6px rgba(217,98,46,0.5); }
   .btn-ghost{
     background:transparent; color:var(--ink); border:1px solid var(--ink);
   }
-  .btn-ghost:hover{ background:var(--ink); color:var(--cream); }
+  .btn-ghost:hover{ background:var(--ink); color:var(--cream); transform:translateY(-2px); }
   @media (max-width:860px){ .navlinks{ display:none; } }
 
   /* ---------- Hero ---------- */
@@ -197,21 +218,31 @@
   .section-head h2{ font-size:clamp(30px,3.6vw,44px); line-height:1.12; }
   .section-head p{ color:var(--ink-soft); margin-top:18px; line-height:1.65; font-size:16px; }
 
-  /* ---------- Clients ---------- */
+  /* ---------- Clients (auto-scrolling marquee) ---------- */
   .clients{ background:var(--cream-2); padding:80px 0; }
-  .clients .label{ color:var(--terracotta-deep); text-align:center; margin-bottom:44px; }
-  .clients-grid{
-    display:flex; flex-wrap:wrap; align-items:center; justify-content:center;
-    gap:44px 60px;
+  .clients .label{ color:var(--terracotta-deep); text-align:center; margin-bottom:36px; }
+  .clients .clients-sub{ margin-top:54px; }
+  .clients-marquee{
+    overflow:hidden; width:100%;
+    -webkit-mask-image:linear-gradient(90deg, transparent, black 8%, black 92%, transparent);
+    mask-image:linear-gradient(90deg, transparent, black 8%, black 92%, transparent);
   }
-  .client{ display:flex; align-items:center; justify-content:center; }
+  .clients-track{
+    display:flex; align-items:center; width:max-content; gap:76px;
+    animation:clients-scroll 34s linear infinite;
+  }
+  .clients-track.reverse{ animation-direction:reverse; animation-duration:28s; }
+  .clients-marquee:hover .clients-track{ animation-play-state:paused; }
+  @keyframes clients-scroll{
+    from{ transform:translateX(0); }
+    to{ transform:translateX(-50%); }
+  }
+  .client{ display:flex; align-items:center; justify-content:center; flex-shrink:0; }
   .client img{
-    max-height:44px; max-width:160px; width:auto; height:auto; object-fit:contain;
+    max-height:58px; max-width:200px; width:auto; height:auto; object-fit:contain;
     filter:brightness(0); opacity:.75; transition:opacity .25s ease;
   }
   .client:hover img{ opacity:1; }
-  .clients .clients-sub{ margin-top:58px; }
-  .clients-more{ text-align:center; margin-top:30px; color:var(--ink-soft); font-size:14.5px; line-height:1.6; }
 
   /* ---------- Philosophy ---------- */
   .philosophy{ background:var(--cream-2); }
@@ -221,6 +252,17 @@
     max-width:900px;
   }
   .philosophy .statement .hl{ color:var(--terracotta); font-style:normal; font-weight:500; }
+
+  /* ---------- About ---------- */
+  .about-grid{
+    display:grid; grid-template-columns:0.95fr 1.05fr; gap:64px; align-items:center;
+  }
+  .about-grid .arch{ aspect-ratio:4/5; }
+  .about-copy p{ color:var(--ink-soft); line-height:1.75; font-size:16px; margin-top:18px; }
+  .about-copy p:first-of-type{ margin-top:20px; }
+  @media (max-width:900px){
+    .about-grid{ grid-template-columns:1fr; }
+  }
 
   /* ---------- Services ---------- */
   .services-grid{
@@ -313,6 +355,8 @@
   .foot-cols{ display:flex; gap:64px; flex-wrap:wrap; }
   .foot-col .label{ color:#7A7568; margin-bottom:16px; }
   .foot-col a, .foot-col div{ display:block; font-size:14px; margin-bottom:10px; color:#D9D3C4; }
+  .foot-col a.social{ display:flex; align-items:center; gap:9px; }
+  .foot-col a.social svg{ width:16px; height:16px; flex-shrink:0; fill:currentColor; }
   .foot-col a:hover{ color:var(--terracotta); }
   .foot-bottom{ display:flex; justify-content:space-between; padding-top:28px; font-size:12.5px; color:#7A7568; flex-wrap:wrap; gap:12px; }
   .foot-arch{
@@ -328,19 +372,14 @@
 <header>
   <nav class="wrap">
     <div class="brand">
-      <svg class="brand-mark" viewBox="0 0 100 100" fill="none">
-        <path d="M20 90V45C20 25 33 12 50 12C67 12 80 25 80 45V90" stroke="#D9622E" stroke-width="5"/>
-        <line x1="50" y1="20" x2="50" y2="42" stroke="#D9622E" stroke-width="5"/>
-        <rect x="42" y="42" width="16" height="8" rx="3" stroke="#D9622E" stroke-width="5"/>
-        <path d="M30 58C30 50 39 44 50 44C61 44 70 50 70 58" stroke="#D9622E" stroke-width="5"/>
-        <path d="M40 58C40 63 44 67 50 67C56 67 60 63 60 58" stroke="#D9622E" stroke-width="5"/>
-      </svg>
+      <img class="brand-mark" src="images/logo-icon.png" alt="Trefina Interiors">
       <div class="brand-text">
         <span class="name">Trefina <span style="font-size:12px; letter-spacing:.18em; font-family:'Space Mono',monospace;">INTERIORS</span></span>
         <span class="sub">YOUR IDEAS. OUR EXPERTISE.</span>
       </div>
     </div>
     <div class="navlinks">
+      <a href="#about">About</a>
       <a href="#services">Services</a>
       <a href="#projects">Projects</a>
       <a href="#process">Process</a>
@@ -375,53 +414,67 @@
 
 <section class="stats">
   <div class="wrap">
-    <div class="stat"><div class="n">2020</div><div class="label l">FOUNDED IN THE UAE</div></div>
-    <div class="stat"><div class="n">10</div><div class="label l">SPECIALIZED SERVICES</div></div>
-    <div class="stat"><div class="n">6</div><div class="label l">LANDMARK PROJECTS</div></div>
-    <div class="stat"><div class="n">3</div><div class="label l">SECTORS SERVED</div></div>
+    <div class="stat reveal"><div class="n" data-count="2020">0</div><div class="label l">FOUNDED IN THE UAE</div></div>
+    <div class="stat reveal"><div class="n" data-count="10">0</div><div class="label l">SPECIALIZED SERVICES</div></div>
+    <div class="stat reveal"><div class="n" data-count="6">0</div><div class="label l">LANDMARK PROJECTS</div></div>
+    <div class="stat reveal"><div class="n" data-count="3">0</div><div class="label l">SECTORS SERVED</div></div>
   </div>
 </section>
 
 <section class="section philosophy">
   <div class="wrap">
-    <p class="statement">Our work is guided by <span class="hl">excellence, innovation, reliability and a client-driven approach</span> — one team handling everything from first idea to final fit-out, so nothing gets lost between design and delivery.</p>
+    <p class="statement reveal">Our work is guided by <span class="hl">excellence, innovation, reliability and a client-driven approach</span> — one team handling everything from first idea to final fit-out, so nothing gets lost between design and delivery.</p>
+  </div>
+</section>
+
+<section class="section" id="about">
+  <div class="wrap about-grid">
+    <div class="arch reveal">
+      <img src="images/about-site-work.jpg" alt="Trefina Interiors site team carrying out MEP and ceiling works on an active fit-out">
+    </div>
+    <div class="about-copy reveal">
+      <div class="label">WHO WE ARE</div>
+      <h2>An in-house team, built to close the gap between design and delivery.</h2>
+      <p>Trefina Interiors LLC was founded in 2020 to close the gap between design and delivery. Rather than handing a project between separate design firms, contractors and specialist trades, we built one in-house team covering civil works, MEP, custom joinery, metalwork, paint and flooring — so a client only ever has one point of contact, from first sketch to final handover.</p>
+      <p>Since then we've delivered fit-outs across the UAE's hospitality, commercial and residential sectors, for clients ranging from international hotel brands to national retailers — guided throughout by the same four principles: excellence, innovation, reliability and a client-driven approach.</p>
+    </div>
   </div>
 </section>
 
 <section class="section" id="services">
   <div class="wrap">
-    <div class="section-head">
+    <div class="section-head reveal">
       <div class="label">WHAT WE DO</div>
       <h2>Six disciplines, one accountable team.</h2>
       <p>From the first concept sketch to the final coat of paint, every stage is handled in-house — so nothing gets lost in translation between trades.</p>
     </div>
     <div class="services-grid">
-      <div class="service">
+      <div class="service reveal">
         <svg class="icon" viewBox="0 0 48 48" fill="none"><path d="M10 42V22C10 13 16 7 24 7C32 7 38 13 38 22V42" stroke="#D9622E" stroke-width="2.4"/><path d="M17 27C17 24 20 21 24 21C28 21 31 24 31 27" stroke="#D9622E" stroke-width="2.4"/></svg>
         <h3>Interior Design Consulting</h3>
         <p>From first idea to construction-ready design — layouts, materials and concepts refined with you at every step.</p>
       </div>
-      <div class="service">
+      <div class="service reveal">
         <svg class="icon" viewBox="0 0 48 48" fill="none"><rect x="9" y="9" width="30" height="30" rx="2" stroke="#D9622E" stroke-width="2.4"/><path d="M9 20H39M20 9V39" stroke="#D9622E" stroke-width="2.4"/></svg>
         <h3>Civil Works</h3>
         <p>Structural and civil groundwork completed to the same standard as the finish that goes on top of it.</p>
       </div>
-      <div class="service">
+      <div class="service reveal">
         <svg class="icon" viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="15" stroke="#D9622E" stroke-width="2.4"/><path d="M24 16V24L29 28" stroke="#D9622E" stroke-width="2.4"/></svg>
         <h3>MEP &amp; Electrical</h3>
         <p>Mechanical, electrical and plumbing systems, engineered, consulted on and installed by our own teams.</p>
       </div>
-      <div class="service">
+      <div class="service reveal">
         <svg class="icon" viewBox="0 0 48 48" fill="none"><path d="M12 36V16L24 8L36 16V36" stroke="#D9622E" stroke-width="2.4"/><path d="M19 36V25H29V36" stroke="#D9622E" stroke-width="2.4"/></svg>
         <h3>Custom Joinery &amp; Metalwork</h3>
         <p>Bespoke joinery and precision metal fabrication, built in-house to fit the space exactly.</p>
       </div>
-      <div class="service">
+      <div class="service reveal">
         <svg class="icon" viewBox="0 0 48 48" fill="none"><path d="M8 38H40" stroke="#D9622E" stroke-width="2.4"/><path d="M12 38V18L24 10L36 18V38" stroke="#D9622E" stroke-width="2.4"/><path d="M19 38V27H29V38" stroke="#D9622E" stroke-width="2.4"/></svg>
         <h3>Paint, Tiling &amp; Flooring</h3>
         <p>Precision paint and texture application, tiling, woodwork and expert flooring services.</p>
       </div>
-      <div class="service">
+      <div class="service reveal">
         <svg class="icon" viewBox="0 0 48 48" fill="none"><rect x="8" y="14" width="32" height="20" rx="2" stroke="#D9622E" stroke-width="2.4"/><path d="M8 24H40" stroke="#D9622E" stroke-width="2.4"/></svg>
         <h3>Material &amp; Furniture Procurement</h3>
         <p>Sourcing quality materials, furniture and accessories to complete the space, on brand and on budget.</p>
@@ -432,13 +485,13 @@
 
 <section class="section" id="projects" style="padding-top:0;">
   <div class="wrap">
-    <div class="section-head">
+    <div class="section-head reveal">
       <div class="label">SELECTED WORK</div>
       <h2>Landmark projects across the UAE.</h2>
       <p>A few of the clients and spaces we've delivered fit-outs for since 2020.</p>
     </div>
 
-    <div class="project">
+    <div class="project reveal">
       <div class="arch">
         <img src="images/kempinski-dining.jpg" alt="Finished dining and buffet counter fit-out at Kempinski Hotel, Downtown Dubai">
       </div>
@@ -454,7 +507,7 @@
       </div>
     </div>
 
-    <div class="project">
+    <div class="project reveal">
       <div class="arch">
         <img src="images/du-call-center.jpg" alt="MEP and ceiling works in progress at the DU Call Center fit-out in Fujairah">
       </div>
@@ -470,7 +523,7 @@
       </div>
     </div>
 
-    <div class="project">
+    <div class="project reveal">
       <div class="arch">
         <img src="images/rixos-lobby.jpg" alt="Finished lobby corridor with cove lighting at Rixos Premium, Jumeirah Beach Residence">
       </div>
@@ -491,7 +544,9 @@
 <section class="clients">
   <div class="wrap">
     <div class="label">CLIENTS WE'VE WORKED WITH</div>
-    <div class="clients-grid">
+  </div>
+  <div class="clients-marquee">
+    <div class="clients-track">
       <div class="client"><img src="images/logo-danubehome.svg" alt="Danube Home"></div>
       <div class="client"><img src="images/logo-landmark.svg" alt="Landmark Group"></div>
       <div class="client"><img src="images/logo-circlek.png" alt="Circle K"></div>
@@ -501,41 +556,56 @@
       <div class="client"><img src="images/logo-kempinski.png" alt="Kempinski Hotels & Resorts"></div>
       <div class="client"><img src="images/logo-danubesports.svg" alt="Danube Sports World"></div>
       <div class="client"><img src="images/logo-adcoop.svg" alt="Adcoop"></div>
+      <div class="client" aria-hidden="true"><img src="images/logo-danubehome.svg" alt=""></div>
+      <div class="client" aria-hidden="true"><img src="images/logo-landmark.svg" alt=""></div>
+      <div class="client" aria-hidden="true"><img src="images/logo-circlek.png" alt=""></div>
+      <div class="client" aria-hidden="true"><img src="images/logo-casamilano.svg" alt=""></div>
+      <div class="client" aria-hidden="true"><img src="images/logo-oberoi.png" alt=""></div>
+      <div class="client" aria-hidden="true"><img src="images/logo-rixos.png" alt=""></div>
+      <div class="client" aria-hidden="true"><img src="images/logo-kempinski.png" alt=""></div>
+      <div class="client" aria-hidden="true"><img src="images/logo-danubesports.svg" alt=""></div>
+      <div class="client" aria-hidden="true"><img src="images/logo-adcoop.svg" alt=""></div>
     </div>
+  </div>
+  <div class="wrap">
     <div class="label clients-sub">DELIVERED VIA MUNAWEL INTERIORS</div>
-    <div class="clients-grid">
+  </div>
+  <div class="clients-marquee">
+    <div class="clients-track reverse">
       <div class="client"><img src="images/logo-dubaimall.png" alt="The Dubai Mall (Cavista), via Munawel Interiors"></div>
       <div class="client"><img src="images/logo-adidas.png" alt="Adidas, via Munawel Interiors"></div>
       <div class="client"><img src="images/logo-emiratesnbd.png" alt="Emirates NBD, via Munawel Interiors"></div>
+      <div class="client" aria-hidden="true"><img src="images/logo-dubaimall.png" alt=""></div>
+      <div class="client" aria-hidden="true"><img src="images/logo-adidas.png" alt=""></div>
+      <div class="client" aria-hidden="true"><img src="images/logo-emiratesnbd.png" alt=""></div>
     </div>
-    <p class="clients-more">Cavista</p>
   </div>
 </section>
 
 <section class="section process" id="process">
   <div class="wrap">
-    <div class="section-head">
+    <div class="section-head reveal">
       <div class="label">HOW WE WORK</div>
       <h2>From brief to handover, in four stages.</h2>
       <p>The order matters — each stage is signed off before the next begins, so there are no surprises mid-build.</p>
     </div>
     <div class="process-list">
-      <div class="process-row">
+      <div class="process-row reveal">
         <div class="num">01</div>
         <h3>Consult</h3>
         <p>We walk the space, understand how it will be used, and scope the work against budget and timeline.</p>
       </div>
-      <div class="process-row">
+      <div class="process-row reveal">
         <div class="num">02</div>
         <h3>Design</h3>
         <p>Ideas are converted into construction-ready designs — materials, layouts and MEP planned before anything is built.</p>
       </div>
-      <div class="process-row">
+      <div class="process-row reveal">
         <div class="num">03</div>
         <h3>Build</h3>
         <p>Our own teams handle civil works, MEP, joinery, metalwork, paint and flooring — one crew, no subcontractor handoffs.</p>
       </div>
-      <div class="process-row">
+      <div class="process-row reveal">
         <div class="num">04</div>
         <h3>Handover</h3>
         <p>A final walkthrough, snagging resolved on the spot where possible, and documentation for everything installed.</p>
@@ -545,7 +615,7 @@
 </section>
 
 <section class="section testimonial">
-  <div class="wrap">
+  <div class="wrap reveal">
     <blockquote>"Excellence, innovation, reliability and a client-driven approach — the values every Trefina Interiors project is built on."</blockquote>
     <div class="values-row">
       <span class="label">Excellence</span>
@@ -561,17 +631,17 @@
 
 <section class="section cta" id="contact">
   <div class="wrap cta-grid">
-    <div>
+    <div class="reveal">
       <div class="label" style="color:var(--terracotta-deep); margin-bottom:16px;">GET IN TOUCH</div>
       <h2>Tell us about<br>your space.</h2>
       <p>Share a few details and we'll come back to you with next steps — no obligation, no hard sell.</p>
       <div class="contact-detail">
-        <div class="row"><span class="k label">PHONE</span><span>+971 4 397 6433<br>+971 52 210 4286</span></div>
-        <div class="row"><span class="k label">EMAIL</span><span>info@trefinainteriors.com</span></div>
+        <div class="row"><span class="k label">PHONE</span><span><a href="tel:+971522457815">+971 52 245 7815</a><br><a href="tel:+971585439123">+971 58 543 9123</a></span></div>
+        <div class="row"><span class="k label">EMAIL</span><span><a href="mailto:info@trefinainteriors.com">info@trefinainteriors.com</a></span></div>
         <div class="row"><span class="k label">ADDRESS</span><span>601, Al Danah Building, Hamdan Bin Mohammed Street, Abu Dhabi, UAE – 22208</span></div>
       </div>
     </div>
-    <form onsubmit="event.preventDefault(); this.querySelector('.form-note').textContent='Thanks — we\'ll be in touch soon.';">
+    <form class="reveal" style="transition-delay:.15s" onsubmit="event.preventDefault(); this.querySelector('.form-note').textContent='Thanks — we\'ll be in touch soon.';">
       <div class="row2">
         <div class="field"><label>NAME</label><input type="text" required></div>
         <div class="field"><label>COMPANY</label><input type="text"></div>
@@ -606,26 +676,29 @@
   <div class="wrap">
     <div class="foot-top">
       <div class="foot-brand">
+        <img src="images/logo-icon.png" alt="Trefina Interiors" style="width:30px; height:32px; object-fit:contain; margin-bottom:10px;">
         <div class="name">Trefina Interiors</div>
         <div class="sub">YOUR IDEAS. OUR EXPERTISE.</div>
       </div>
       <div class="foot-cols">
         <div class="foot-col">
           <div class="label">STUDIO</div>
+          <a href="#about">About</a>
           <a href="#services">Services</a>
           <a href="#projects">Projects</a>
           <a href="#process">Our Process</a>
         </div>
         <div class="foot-col">
           <div class="label">CONTACT</div>
-          <div>+971 4 397 6433</div>
-          <div>info@trefinainteriors.com</div>
+          <div><a href="tel:+971522457815">+971 52 245 7815</a></div>
+          <div><a href="tel:+971585439123">+971 58 543 9123</a></div>
+          <div><a href="mailto:info@trefinainteriors.com">info@trefinainteriors.com</a></div>
           <div>Abu Dhabi, UAE</div>
         </div>
         <div class="foot-col">
           <div class="label">FOLLOW</div>
-          <a href="https://www.instagram.com/trefina.interiors/" target="_blank" rel="noopener">Instagram</a>
-          <a href="https://www.linkedin.com/company/108126956/" target="_blank" rel="noopener">LinkedIn</a>
+          <a class="social" href="https://www.instagram.com/trefina.interiors/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M12 2c-2.72 0-3.06.01-4.13.06-1.07.05-1.8.22-2.44.47-.66.26-1.22.6-1.78 1.16-.56.56-.9 1.12-1.16 1.78-.25.64-.42 1.37-.47 2.44C2 8.94 2 9.28 2 12s.01 3.06.06 4.13c.05 1.07.22 1.8.47 2.44.26.66.6 1.22 1.16 1.78.56.56 1.12.9 1.78 1.16.64.25 1.37.42 2.44.47C8.94 22 9.28 22 12 22s3.06-.01 4.13-.06c1.07-.05 1.8-.22 2.44-.47.66-.26 1.22-.6 1.78-1.16.56-.56.9-1.12 1.16-1.78.25-.64.42-1.37.47-2.44.05-1.07.06-1.41.06-4.13s-.01-3.06-.06-4.13c-.05-1.07-.22-1.8-.47-2.44-.26-.66-.6-1.22-1.16-1.78-.56-.56-1.12-.9-1.78-1.16-.64-.25-1.37-.42-2.44-.47C15.06 2 14.72 2 12 2zm0 1.8c2.67 0 2.99.01 4.04.06.98.04 1.5.21 1.85.34.47.18.8.4 1.15.75.35.35.57.68.75 1.15.13.36.3.87.34 1.85.05 1.05.06 1.37.06 4.04s-.01 2.99-.06 4.04c-.04.98-.21 1.5-.34 1.85-.18.47-.4.8-.75 1.15-.35.35-.68.57-1.15.75-.36.13-.87.3-1.85.34-1.05.05-1.37.06-4.04.06s-2.99-.01-4.04-.06c-.98-.04-1.5-.21-1.85-.34-.47-.18-.8-.4-1.15-.75-.35-.35-.57-.68-.75-1.15-.13-.36-.3-.87-.34-1.85C3.8 14.99 3.8 14.67 3.8 12s.01-2.99.06-4.04c.04-.98.21-1.5.34-1.85.18-.47.4-.8.75-1.15.35-.35.68-.57 1.15-.75.36-.13.87-.3 1.85-.34C9.01 3.8 9.33 3.8 12 3.8zm0 3.2a5 5 0 100 10 5 5 0 000-10zm0 8.25a3.25 3.25 0 110-6.5 3.25 3.25 0 010 6.5zm5.2-8.45a1.17 1.17 0 100-2.33 1.17 1.17 0 000 2.33z"/></svg>Instagram</a>
+          <a class="social" href="https://www.linkedin.com/company/108126956/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.03-1.85-3.03-1.85 0-2.14 1.45-2.14 2.94v5.66H9.36V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 110-4.12 2.06 2.06 0 010 4.12zM7.11 20.45H3.56V9h3.55v11.45z"/></svg>LinkedIn</a>
         </div>
       </div>
     </div>
@@ -635,6 +708,57 @@
     </div>
   </div>
 </footer>
+
+<script>
+(function(){
+  var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function animateCount(el){
+    var target = parseInt(el.getAttribute('data-count'), 10) || 0;
+    if(reduceMotion){ el.textContent = target; return; }
+    var start = null, duration = 1200;
+    function step(ts){
+      if(!start) start = ts;
+      var progress = Math.min((ts - start) / duration, 1);
+      var eased = 1 - Math.pow(1 - progress, 3);
+      el.textContent = Math.round(eased * target);
+      if(progress < 1){ requestAnimationFrame(step); }
+      else { el.textContent = target; }
+    }
+    requestAnimationFrame(step);
+  }
+
+  var revealEls = document.querySelectorAll('.reveal');
+  if(reduceMotion || !('IntersectionObserver' in window)){
+    revealEls.forEach(function(el){
+      el.classList.add('is-visible');
+      var counter = el.querySelector ? el.querySelector('[data-count]') : null;
+      if(el.hasAttribute && el.hasAttribute('data-count')) animateCount(el);
+      if(counter) animateCount(counter);
+    });
+  } else {
+    var observer = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting){
+          entry.target.classList.add('is-visible');
+          var counter = entry.target.querySelector('[data-count]');
+          if(counter) animateCount(counter);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold:0.15, rootMargin:'0px 0px -40px 0px' });
+    revealEls.forEach(function(el){ observer.observe(el); });
+  }
+
+  var header = document.querySelector('header');
+  function onScroll(){
+    if(window.scrollY > 12){ header.classList.add('scrolled'); }
+    else { header.classList.remove('scrolled'); }
+  }
+  window.addEventListener('scroll', onScroll, { passive:true });
+  onScroll();
+})();
+</script>
 
 </body>
 </html>
