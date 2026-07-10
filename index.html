@@ -201,20 +201,15 @@
   .clients{ background:var(--cream-2); padding:80px 0; }
   .clients .label{ color:var(--terracotta-deep); text-align:center; margin-bottom:44px; }
   .clients-grid{
-    display:grid; grid-template-columns:repeat(4,1fr); gap:1px;
-    background:var(--line); border:1px solid var(--line);
+    display:flex; flex-wrap:wrap; align-items:center; justify-content:center;
+    gap:44px 60px;
   }
-  .client{
-    background:var(--cream-2); padding:34px 24px; min-height:120px;
-    display:flex; align-items:center; justify-content:center;
-  }
+  .client{ display:flex; align-items:center; justify-content:center; }
   .client img{
-    max-height:36px; max-width:150px; width:auto; height:auto; object-fit:contain;
+    max-height:34px; max-width:150px; width:auto; height:auto; object-fit:contain;
     filter:brightness(0); opacity:.5; transition:opacity .25s ease;
   }
-  .client:hover img{ opacity:.85; }
-  @media (max-width:760px){ .clients-grid{ grid-template-columns:1fr 1fr; } }
-  @media (max-width:460px){ .clients-grid{ grid-template-columns:1fr; } }
+  .client:hover img{ opacity:.8; }
 
   /* ---------- Philosophy ---------- */
   .philosophy{ background:var(--cream-2); }
@@ -499,6 +494,7 @@
       <div class="client"><img src="images/logo-landmark.svg" alt="Landmark Group"></div>
       <div class="client"><img src="images/logo-circlek.png" alt="Circle K"></div>
       <div class="client"><img src="images/logo-casamilano.svg" alt="Casamilano"></div>
+      <div class="client"><img src="images/logo-oberoi.png" alt="Oberoi Hotels & Resorts"></div>
     </div>
   </div>
 </section>
