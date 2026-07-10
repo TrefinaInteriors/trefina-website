@@ -197,6 +197,22 @@
   .section-head h2{ font-size:clamp(30px,3.6vw,44px); line-height:1.12; }
   .section-head p{ color:var(--ink-soft); margin-top:18px; line-height:1.65; font-size:16px; }
 
+  /* ---------- Clients ---------- */
+  .clients{ background:var(--cream-2); padding:80px 0; }
+  .clients .label{ color:var(--terracotta-deep); text-align:center; margin-bottom:44px; }
+  .clients-grid{
+    display:grid; grid-template-columns:repeat(3,1fr); gap:1px;
+    background:var(--line); border:1px solid var(--line);
+  }
+  .client{
+    background:var(--cream-2); padding:34px 24px; text-align:center;
+    display:flex; flex-direction:column; gap:6px; justify-content:center;
+  }
+  .client .cn{ font-family:'Fraunces', serif; font-size:20px; color:var(--ink); }
+  .client .cl{ font-size:12px; color:var(--ink-soft); letter-spacing:0.02em; }
+  @media (max-width:760px){ .clients-grid{ grid-template-columns:1fr 1fr; } }
+  @media (max-width:460px){ .clients-grid{ grid-template-columns:1fr; } }
+
   /* ---------- Philosophy ---------- */
   .philosophy{ background:var(--cream-2); }
   .philosophy .statement{
@@ -468,6 +484,20 @@
           <div><div class="k">LOCATION</div><div class="v">JBR, Dubai</div></div>
         </div>
       </div>
+    </div>
+  </div>
+</section>
+
+<section class="clients">
+  <div class="wrap">
+    <div class="label">CLIENTS WE'VE WORKED WITH</div>
+    <div class="clients-grid">
+      <div class="client"><span class="cn">Kempinski Hotel</span><span class="cl">Downtown Dubai</span></div>
+      <div class="client"><span class="cn">Oberoi Resort</span><span class="cl">Ajman</span></div>
+      <div class="client"><span class="cn">Rixos Premium</span><span class="cl">Jumeirah Beach Residence</span></div>
+      <div class="client"><span class="cn">Spinneys</span><span class="cl">Wafi Mall &middot; via Munawel Interiors</span></div>
+      <div class="client"><span class="cn">du Call Center</span><span class="cl">Fujairah</span></div>
+      <div class="client"><span class="cn">Concrete</span><span class="cl">Reem Mall</span></div>
     </div>
   </div>
 </section>
