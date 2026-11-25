@@ -165,7 +165,31 @@
     background:transparent; color:var(--ink); border:1px solid var(--ink);
   }
   .btn-ghost:hover{ background:var(--ink); color:var(--cream); transform:translateY(-2px); }
-  @media (max-width:860px){ .navlinks{ display:none; } }
+  .menu-toggle{
+    display:none; align-items:center; justify-content:center;
+    width:40px; height:40px; padding:0; margin:0; flex-shrink:0;
+    background:transparent; border:1px solid var(--line); border-radius:3px;
+    color:var(--ink); cursor:pointer;
+  }
+  .menu-toggle svg{ width:22px; height:22px; }
+  .menu-toggle .icon-close{ display:none; }
+  .menu-toggle[aria-expanded="true"] .icon-menu{ display:none; }
+  .menu-toggle[aria-expanded="true"] .icon-close{ display:block; }
+  .mobile-menu{
+    display:none; flex-direction:column;
+    background:var(--cream); border-bottom:1px solid var(--line);
+    padding:8px 32px 24px;
+  }
+  .mobile-menu a{
+    padding:14px 0; font-size:16px; color:var(--ink); border-bottom:1px solid var(--line);
+  }
+  .mobile-menu a.btn{ border:1px solid var(--terracotta); text-align:center; margin-top:16px; }
+  .mobile-menu.open{ display:flex; }
+  @media (max-width:860px){
+    .navlinks{ display:none; }
+    .nav-cta{ display:none; }
+    .menu-toggle{ display:flex; }
+  }
 
   /* ---------- Hero ---------- */
   .hero{ padding:64px 0 40px; }
@@ -184,7 +208,7 @@
     font-size:17px; line-height:1.65; color:var(--ink-soft);
     max-width:460px; margin:26px 0 34px;
   }
-  .hero-actions{ display:flex; gap:16px; align-items:center; }
+  .hero-actions{ display:flex; gap:16px; align-items:center; flex-wrap:wrap; }
   .hero-actions .note{ font-family:'Space Mono', monospace; font-size:11px; color:var(--ink-soft); letter-spacing:0.06em; }
   .hero-visual{ position:relative; }
   .hero-visual .arch{ aspect-ratio:3/4; }
@@ -344,6 +368,7 @@
   }
   .field input:focus, .field select:focus, .field textarea:focus{ border-color:var(--terracotta); }
   .row2{ display:grid; grid-template-columns:1fr 1fr; gap:18px; }
+  @media (max-width:480px){ .row2{ grid-template-columns:1fr; } }
   .form-note{ font-size:12px; color:var(--ink-soft); margin-top:6px; }
   @media (max-width:860px){ .cta-grid{ grid-template-columns:1fr; } }
 
@@ -362,6 +387,34 @@
   .foot-arch{
     position:absolute; right:-60px; bottom:-80px; width:340px; height:340px;
     border:1.5px solid #333629; border-radius:400px 400px 0 0; opacity:0.6;
+  }
+
+  /* ---------- WhatsApp FAB ---------- */
+  .whatsapp-fab{ position:fixed; right:24px; bottom:24px; z-index:60; display:flex; flex-direction:column; align-items:flex-end; gap:12px; }
+  .whatsapp-options{
+    display:flex; flex-direction:column; gap:8px;
+    opacity:0; transform:translateY(12px) scale(.96); pointer-events:none;
+    transition:opacity .22s ease, transform .22s ease;
+  }
+  .whatsapp-options.open{ opacity:1; transform:translateY(0) scale(1); pointer-events:auto; }
+  .whatsapp-options a{
+    display:flex; align-items:center; gap:10px;
+    background:var(--ink); color:var(--cream); font-size:13.5px;
+    padding:11px 16px; border-radius:24px; white-space:nowrap;
+    box-shadow:0 10px 30px -8px rgba(0,0,0,.35);
+  }
+  .whatsapp-options a:hover{ background:var(--espresso-soft); }
+  .whatsapp-options svg{ width:16px; height:16px; flex-shrink:0; fill:#25D366; }
+  .whatsapp-toggle{
+    width:58px; height:58px; border-radius:50%; border:none; cursor:pointer;
+    background:#25D366; color:#fff; display:flex; align-items:center; justify-content:center;
+    box-shadow:0 10px 30px -6px rgba(37,211,102,.55); transition:transform .2s ease;
+  }
+  .whatsapp-toggle:hover{ transform:scale(1.06); }
+  .whatsapp-toggle svg{ width:30px; height:30px; fill:#fff; }
+  @media (max-width:600px){
+    .whatsapp-fab{ right:16px; bottom:16px; }
+    .whatsapp-toggle{ width:52px; height:52px; }
   }
 
   ::selection{ background:var(--terracotta); color:var(--cream); }
@@ -385,8 +438,20 @@
       <a href="#process">Process</a>
       <a href="#contact">Contact</a>
     </div>
-    <a href="#contact" class="btn">Request a Quote</a>
+    <a href="#contact" class="btn nav-cta">Request a Quote</a>
+    <button class="menu-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
+      <svg class="icon-menu" viewBox="0 0 24 24" fill="none"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      <svg class="icon-close" viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    </button>
   </nav>
+  <div class="mobile-menu" id="mobile-menu">
+    <a href="#about">About</a>
+    <a href="#services">Services</a>
+    <a href="#projects">Projects</a>
+    <a href="#process">Process</a>
+    <a href="#contact">Contact</a>
+    <a href="#contact" class="btn">Request a Quote</a>
+  </div>
 </header>
 
 <section class="hero">
@@ -697,8 +762,8 @@
         </div>
         <div class="foot-col">
           <div class="label">FOLLOW</div>
-          <a class="social" href="https://www.instagram.com/trefina.interiors/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M12 2c-2.72 0-3.06.01-4.13.06-1.07.05-1.8.22-2.44.47-.66.26-1.22.6-1.78 1.16-.56.56-.9 1.12-1.16 1.78-.25.64-.42 1.37-.47 2.44C2 8.94 2 9.28 2 12s.01 3.06.06 4.13c.05 1.07.22 1.8.47 2.44.26.66.6 1.22 1.16 1.78.56.56 1.12.9 1.78 1.16.64.25 1.37.42 2.44.47C8.94 22 9.28 22 12 22s3.06-.01 4.13-.06c1.07-.05 1.8-.22 2.44-.47.66-.26 1.22-.6 1.78-1.16.56-.56.9-1.12 1.16-1.78.25-.64.42-1.37.47-2.44.05-1.07.06-1.41.06-4.13s-.01-3.06-.06-4.13c-.05-1.07-.22-1.8-.47-2.44-.26-.66-.6-1.22-1.16-1.78-.56-.56-1.12-.9-1.78-1.16-.64-.25-1.37-.42-2.44-.47C15.06 2 14.72 2 12 2zm0 1.8c2.67 0 2.99.01 4.04.06.98.04 1.5.21 1.85.34.47.18.8.4 1.15.75.35.35.57.68.75 1.15.13.36.3.87.34 1.85.05 1.05.06 1.37.06 4.04s-.01 2.99-.06 4.04c-.04.98-.21 1.5-.34 1.85-.18.47-.4.8-.75 1.15-.35.35-.68.57-1.15.75-.36.13-.87.3-1.85.34-1.05.05-1.37.06-4.04.06s-2.99-.01-4.04-.06c-.98-.04-1.5-.21-1.85-.34-.47-.18-.8-.4-1.15-.75-.35-.35-.57-.68-.75-1.15-.13-.36-.3-.87-.34-1.85C3.8 14.99 3.8 14.67 3.8 12s.01-2.99.06-4.04c.04-.98.21-1.5.34-1.85.18-.47.4-.8.75-1.15.35-.35.68-.57 1.15-.75.36-.13.87-.3 1.85-.34C9.01 3.8 9.33 3.8 12 3.8zm0 3.2a5 5 0 100 10 5 5 0 000-10zm0 8.25a3.25 3.25 0 110-6.5 3.25 3.25 0 010 6.5zm5.2-8.45a1.17 1.17 0 100-2.33 1.17 1.17 0 000 2.33z"/></svg>Instagram</a>
-          <a class="social" href="https://www.linkedin.com/company/108126956/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.03-1.85-3.03-1.85 0-2.14 1.45-2.14 2.94v5.66H9.36V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 110-4.12 2.06 2.06 0 010 4.12zM7.11 20.45H3.56V9h3.55v11.45z"/></svg>LinkedIn</a>
+          <a class="social" href="https://www.instagram.com/trefina.interiors/"><svg viewBox="0 0 24 24"><path d="M12 2c-2.72 0-3.06.01-4.13.06-1.07.05-1.8.22-2.44.47-.66.26-1.22.6-1.78 1.16-.56.56-.9 1.12-1.16 1.78-.25.64-.42 1.37-.47 2.44C2 8.94 2 9.28 2 12s.01 3.06.06 4.13c.05 1.07.22 1.8.47 2.44.26.66.6 1.22 1.16 1.78.56.56 1.12.9 1.78 1.16.64.25 1.37.42 2.44.47C8.94 22 9.28 22 12 22s3.06-.01 4.13-.06c1.07-.05 1.8-.22 2.44-.47.66-.26 1.22-.6 1.78-1.16.56-.56.9-1.12 1.16-1.78.25-.64.42-1.37.47-2.44.05-1.07.06-1.41.06-4.13s-.01-3.06-.06-4.13c-.05-1.07-.22-1.8-.47-2.44-.26-.66-.6-1.22-1.16-1.78-.56-.56-1.12-.9-1.78-1.16-.64-.25-1.37-.42-2.44-.47C15.06 2 14.72 2 12 2zm0 1.8c2.67 0 2.99.01 4.04.06.98.04 1.5.21 1.85.34.47.18.8.4 1.15.75.35.35.57.68.75 1.15.13.36.3.87.34 1.85.05 1.05.06 1.37.06 4.04s-.01 2.99-.06 4.04c-.04.98-.21 1.5-.34 1.85-.18.47-.4.8-.75 1.15-.35.35-.68.57-1.15.75-.36.13-.87.3-1.85.34-1.05.05-1.37.06-4.04.06s-2.99-.01-4.04-.06c-.98-.04-1.5-.21-1.85-.34-.47-.18-.8-.4-1.15-.75-.35-.35-.57-.68-.75-1.15-.13-.36-.3-.87-.34-1.85C3.8 14.99 3.8 14.67 3.8 12s.01-2.99.06-4.04c.04-.98.21-1.5.34-1.85.18-.47.4-.8.75-1.15.35-.35.68-.57 1.15-.75.36-.13.87-.3 1.85-.34C9.01 3.8 9.33 3.8 12 3.8zm0 3.2a5 5 0 100 10 5 5 0 000-10zm0 8.25a3.25 3.25 0 110-6.5 3.25 3.25 0 010 6.5zm5.2-8.45a1.17 1.17 0 100-2.33 1.17 1.17 0 000 2.33z"/></svg>Instagram</a>
+          <a class="social" href="https://www.linkedin.com/company/108126956/"><svg viewBox="0 0 24 24"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.03-1.85-3.03-1.85 0-2.14 1.45-2.14 2.94v5.66H9.36V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 110-4.12 2.06 2.06 0 010 4.12zM7.11 20.45H3.56V9h3.55v11.45z"/></svg>LinkedIn</a>
         </div>
       </div>
     </div>
@@ -708,6 +773,22 @@
     </div>
   </div>
 </footer>
+
+<div class="whatsapp-fab">
+  <div class="whatsapp-options" id="whatsapp-options">
+    <a href="https://wa.me/971522457815" aria-label="Chat on WhatsApp with +971 52 245 7815">
+      <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12c0 1.85.5 3.58 1.36 5.07L2 22l5.06-1.33A9.94 9.94 0 0012 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm5.2 14.2c-.22.62-1.28 1.2-1.77 1.24-.45.05-1.01.07-1.63-.1-.38-.11-.87-.28-1.5-.55-2.64-1.14-4.36-3.8-4.5-3.98-.13-.18-1.08-1.43-1.08-2.73 0-1.3.68-1.94.93-2.2.24-.27.53-.34.71-.34h.5c.16 0 .38-.06.59.45.22.53.75 1.83.82 1.96.07.13.11.29.02.47-.09.18-.13.29-.27.44-.13.16-.28.35-.4.47-.13.13-.27.27-.12.53.16.27.7 1.15 1.5 1.86 1.03.92 1.9 1.21 2.17 1.34.27.13.42.11.58-.07.16-.18.68-.79.86-1.06.18-.27.36-.22.6-.13.25.09 1.57.74 1.84.87.27.13.45.2.51.31.07.11.07.65-.15 1.27z"/></svg>
+      +971 52 245 7815
+    </a>
+    <a href="https://wa.me/971585439123" aria-label="Chat on WhatsApp with +971 58 543 9123">
+      <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12c0 1.85.5 3.58 1.36 5.07L2 22l5.06-1.33A9.94 9.94 0 0012 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm5.2 14.2c-.22.62-1.28 1.2-1.77 1.24-.45.05-1.01.07-1.63-.1-.38-.11-.87-.28-1.5-.55-2.64-1.14-4.36-3.8-4.5-3.98-.13-.18-1.08-1.43-1.08-2.73 0-1.3.68-1.94.93-2.2.24-.27.53-.34.71-.34h.5c.16 0 .38-.06.59.45.22.53.75 1.83.82 1.96.07.13.11.29.02.47-.09.18-.13.29-.27.44-.13.16-.28.35-.4.47-.13.13-.27.27-.12.53.16.27.7 1.15 1.5 1.86 1.03.92 1.9 1.21 2.17 1.34.27.13.42.11.58-.07.16-.18.68-.79.86-1.06.18-.27.36-.22.6-.13.25.09 1.57.74 1.84.87.27.13.45.2.51.31.07.11.07.65-.15 1.27z"/></svg>
+      +971 58 543 9123
+    </a>
+  </div>
+  <button class="whatsapp-toggle" aria-label="Chat on WhatsApp" aria-expanded="false" aria-controls="whatsapp-options">
+    <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12c0 1.85.5 3.58 1.36 5.07L2 22l5.06-1.33A9.94 9.94 0 0012 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm5.2 14.2c-.22.62-1.28 1.2-1.77 1.24-.45.05-1.01.07-1.63-.1-.38-.11-.87-.28-1.5-.55-2.64-1.14-4.36-3.8-4.5-3.98-.13-.18-1.08-1.43-1.08-2.73 0-1.3.68-1.94.93-2.2.24-.27.53-.34.71-.34h.5c.16 0 .38-.06.59.45.22.53.75 1.83.82 1.96.07.13.11.29.02.47-.09.18-.13.29-.27.44-.13.16-.28.35-.4.47-.13.13-.27.27-.12.53.16.27.7 1.15 1.5 1.86 1.03.92 1.9 1.21 2.17 1.34.27.13.42.11.58-.07.16-.18.68-.79.86-1.06.18-.27.36-.22.6-.13.25.09 1.57.74 1.84.87.27.13.45.2.51.31.07.11.07.65-.15 1.27z"/></svg>
+  </button>
+</div>
 
 <script>
 (function(){
@@ -757,6 +838,38 @@
   }
   window.addEventListener('scroll', onScroll, { passive:true });
   onScroll();
+
+  var menuToggle = document.querySelector('.menu-toggle');
+  var mobileMenu = document.getElementById('mobile-menu');
+  function closeMenu(){
+    mobileMenu.classList.remove('open');
+    menuToggle.setAttribute('aria-expanded', 'false');
+  }
+  menuToggle.addEventListener('click', function(){
+    var isOpen = mobileMenu.classList.toggle('open');
+    menuToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+  });
+  mobileMenu.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click', closeMenu);
+  });
+  window.addEventListener('resize', function(){
+    if(window.innerWidth > 860){ closeMenu(); }
+  });
+
+  var waToggle = document.querySelector('.whatsapp-toggle');
+  var waOptions = document.getElementById('whatsapp-options');
+  function closeWa(){
+    waOptions.classList.remove('open');
+    waToggle.setAttribute('aria-expanded', 'false');
+  }
+  waToggle.addEventListener('click', function(e){
+    e.stopPropagation();
+    var isOpen = waOptions.classList.toggle('open');
+    waToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+  });
+  document.addEventListener('click', function(e){
+    if(!waOptions.contains(e.target) && e.target !== waToggle){ closeWa(); }
+  });
 })();
 </script>
 
