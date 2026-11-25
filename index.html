@@ -370,6 +370,30 @@
   .row2{ display:grid; grid-template-columns:1fr 1fr; gap:18px; }
   @media (max-width:480px){ .row2{ grid-template-columns:1fr; } }
   .form-note{ font-size:12px; color:var(--ink-soft); margin-top:6px; }
+
+  /* ---------- Quick estimate (hero) ---------- */
+  .quick-form{
+    margin-top:30px; padding:18px 20px; max-width:540px;
+    background:var(--cream-2); border:1px solid var(--line); border-radius:4px;
+  }
+  .quick-title{ color:var(--terracotta-deep); margin-bottom:12px; }
+  .quick-row{ display:grid; grid-template-columns:1fr 1.25fr auto; gap:10px; align-items:center; }
+  .quick-row input, .quick-row select{
+    font-family:'Work Sans', sans-serif; font-size:14px; color:var(--ink);
+    background:var(--cream); border:1px solid var(--line); border-radius:3px;
+    padding:11px 12px; min-width:0; outline:none;
+  }
+  .quick-row input:focus, .quick-row select:focus{ border-color:var(--terracotta); }
+  @media (max-width:560px){ .quick-row{ grid-template-columns:1fr; } }
+
+  /* ---------- Call band ---------- */
+  .callband{ background:var(--espresso); color:var(--cream); padding:84px 0; text-align:center; }
+  .callband .label{ color:var(--terracotta); margin-bottom:14px; }
+  .callband h2{ font-size:clamp(28px,3.4vw,42px); line-height:1.12; margin-bottom:14px; }
+  .callband p{ color:#B9B2A0; margin:0 auto 30px; max-width:460px; line-height:1.65; }
+  .callband-actions{ display:flex; gap:14px; justify-content:center; flex-wrap:wrap; }
+  .callband .btn-ghost{ color:var(--cream); border-color:var(--cream); }
+  .callband .btn-ghost:hover{ background:var(--cream); color:var(--ink); }
   @media (max-width:860px){ .cta-grid{ grid-template-columns:1fr; } }
 
   /* ---------- Footer ---------- */
@@ -490,13 +514,31 @@
 <section class="hero">
   <div class="wrap hero-grid">
     <div>
-      <div class="label eyebrow">CIVIL WORKS &amp; INTERIOR FIT-OUT</div>
+      <div class="label eyebrow">INTERIOR FIT-OUT COMPANY &middot; ABU DHABI, UAE</div>
       <h1>Spaces designed<br>and <em>built</em><br>under one roof.</h1>
       <p class="lede">Trefina Interiors LLC has delivered interior fit-outs across the UAE since 2020 — from concept design through MEP, joinery, metalwork, paint and flooring, handled by one in-house team.</p>
       <div class="hero-actions">
         <a href="#contact" class="btn">Start Your Project</a>
         <a href="#projects" class="btn btn-ghost">View Our Work</a>
       </div>
+      <form id="quick-form" class="quick-form" name="quick-estimate" method="POST" action="/" data-netlify="true" netlify-honeypot="bot-field">
+        <input type="hidden" name="form-name" value="quick-estimate">
+        <p style="display:none"><label>Leave this empty: <input name="bot-field"></label></p>
+        <div class="label quick-title">GET A FREE PROJECT ESTIMATE</div>
+        <div class="quick-row">
+          <input type="tel" name="phone" placeholder="Your phone number" aria-label="Your phone number" required>
+          <select name="project_type" aria-label="Project type">
+            <option>Commercial office</option>
+            <option>Retail</option>
+            <option>Hospitality</option>
+            <option>Residential</option>
+            <option>Industrial</option>
+            <option>Other</option>
+          </select>
+          <button type="submit" class="btn">Get My Estimate</button>
+        </div>
+        <div class="form-note"></div>
+      </form>
     </div>
     <div class="hero-visual">
       <div class="arch arch-outline">
@@ -860,6 +902,19 @@
   </div>
 </section>
 
+<section class="callband">
+  <div class="wrap">
+    <div class="label">PREFER TO TALK IT THROUGH?</div>
+    <h2>Ready to start your project?</h2>
+    <p>Call or message us directly and we'll come back to you with next steps.</p>
+    <div class="callband-actions">
+      <a href="tel:+971522457815" class="btn">Call +971 52 245 7815</a>
+      <a href="https://wa.me/971522457815" class="btn btn-ghost">WhatsApp us</a>
+      <a href="mailto:info@trefinainteriors.com" class="btn btn-ghost">Email us</a>
+    </div>
+  </div>
+</section>
+
 <footer>
   <div class="foot-arch"></div>
   <div class="wrap">
@@ -980,25 +1035,28 @@
     if(window.innerWidth > 860){ closeMenu(); }
   });
 
-  var enquiryForm = document.getElementById('enquiry-form');
-  enquiryForm.addEventListener('submit', function(e){
-    e.preventDefault();
-    var note = enquiryForm.querySelector('.form-note');
-    var btn = enquiryForm.querySelector('button[type="submit"]');
-    btn.disabled = true;
-    note.textContent = 'Sending…';
-    fetch('/', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: new URLSearchParams(new FormData(enquiryForm)).toString()
-    }).then(function(res){
-      if(!res.ok) throw new Error('failed');
-      enquiryForm.reset();
-      note.textContent = 'Thank you. We have received your enquiry and will be in touch soon.';
-    }).catch(function(){
-      note.textContent = 'Sorry, something went wrong. Please WhatsApp or call us instead.';
-    }).then(function(){ btn.disabled = false; });
-  });
+  function wireForm(form){
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      var note = form.querySelector('.form-note');
+      var btn = form.querySelector('button[type="submit"]');
+      btn.disabled = true;
+      note.textContent = 'Sending…';
+      fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams(new FormData(form)).toString()
+      }).then(function(res){
+        if(!res.ok) throw new Error('failed');
+        form.reset();
+        note.textContent = 'Thank you. We have received your enquiry and will be in touch soon.';
+      }).catch(function(){
+        note.textContent = 'Sorry, something went wrong. Please WhatsApp or call us instead.';
+      }).then(function(){ btn.disabled = false; });
+    });
+  }
+  wireForm(document.getElementById('enquiry-form'));
+  wireForm(document.getElementById('quick-form'));
 
   var lb = document.getElementById('lightbox');
   var lbImg = lb.querySelector('.lb-img');
