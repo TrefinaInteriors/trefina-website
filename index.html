@@ -200,11 +200,12 @@
   .hero2-bg{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
   .hero2-shade{
     position:absolute; inset:0;
-    background:linear-gradient(180deg, rgba(20,22,18,.38) 0%, rgba(20,22,18,.22) 38%, rgba(20,22,18,.82) 100%);
+    background:linear-gradient(180deg, rgba(20,22,18,.58) 0%, rgba(20,22,18,.5) 45%, rgba(20,22,18,.88) 100%);
   }
   .hero2-inner{ position:relative; width:100%; padding-top:110px; padding-bottom:56px; }
   .hero2-eyebrow{ color:#F0C9B0; margin-bottom:18px; display:flex; align-items:center; gap:10px; }
   .hero2-eyebrow::before{ content:''; width:26px; height:1px; background:var(--terracotta); display:inline-block; }
+  .hero2 h1, .hero2 p.lede{ text-shadow:0 2px 24px rgba(0,0,0,.45); }
   .hero2 h1{ font-size:clamp(40px,6vw,84px); line-height:1.03; letter-spacing:-0.015em; max-width:900px; color:#fff; }
   .hero2 h1 em{ font-style:italic; color:#F2A57E; font-weight:400; }
   .hero2 p.lede{ font-size:18px; line-height:1.6; color:#E7E0D0; max-width:520px; margin:22px 0 30px; }
@@ -212,14 +213,6 @@
   .btn-ghost-light{ background:transparent; color:#fff; border:1px solid rgba(255,255,255,.75); }
   .btn-ghost-light:hover{ background:#fff; color:var(--ink); transform:translateY(-2px); }
   .hero2 .quick-form{ margin-top:38px; background:rgba(244,239,227,.96); max-width:560px; }
-
-  /* ---------- Showreel video ---------- */
-  .showreel{ padding:56px 0 72px; }
-  .showreel-head{ margin-bottom:32px; }
-  .showreel-head .label{ color:var(--terracotta-deep); margin-bottom:12px; }
-  .showreel-head h2{ font-size:clamp(28px,3.6vw,46px); line-height:1.1; max-width:760px; }
-  .showreel-frame{ position:relative; aspect-ratio:16/9; border-radius:4px; overflow:hidden; background:var(--espresso); }
-  .showreel-frame video{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; display:block; }
 
   /* ---------- Featured projects slider ---------- */
   .featured{ padding:96px 0 48px; }
@@ -549,7 +542,9 @@
 </header>
 
 <section class="hero2">
-  <img class="hero2-bg" src="images/hero-wide.jpg" alt="Finished training room with a deep blue feature wall, warm wall lights and a dark coffered ceiling, a Trefina Interiors project">
+  <video id="hero-video" class="hero2-bg" autoplay muted loop playsinline preload="auto" poster="video/sharjah-showroom-poster.jpg" aria-hidden="true" disablepictureinpicture>
+    <source src="video/sharjah-showroom.mp4" type="video/mp4">
+  </video>
   <div class="hero2-shade"></div>
   <div class="wrap hero2-inner">
     <div class="label hero2-eyebrow">INTERIOR FIT-OUT COMPANY &middot; ABU DHABI, UAE</div>
@@ -640,20 +635,6 @@
           <p>Rixos Premium &middot; JBR, Dubai</p>
         </div>
       </article>
-  </div>
-</section>
-
-<section class="showreel">
-  <div class="wrap">
-    <div class="showreel-head reveal">
-      <div class="label">WALKTHROUGH</div>
-      <h2>Inside the Danube Home showroom, Sharjah.</h2>
-    </div>
-    <div class="showreel-frame reveal">
-      <video id="showreel-video" autoplay muted loop playsinline preload="metadata" poster="video/sharjah-showroom-poster.jpg" aria-label="Walkthrough video of the Danube Home showroom in Sharjah" disablepictureinpicture>
-        <source src="video/sharjah-showroom.mp4" type="video/mp4">
-      </video>
-    </div>
   </div>
 </section>
 
@@ -1063,15 +1044,15 @@
     if(lbList.length > 1 && e.key === 'ArrowRight') showPhoto(lbIndex + 1);
   });
 
-  var reel = document.getElementById('showreel-video');
-  if(reel && reduceMotion){ reel.removeAttribute('autoplay'); reel.pause(); }
-  if(reel && !reduceMotion && 'IntersectionObserver' in window){
+  var heroVid = document.getElementById('hero-video');
+  if(heroVid && reduceMotion){ heroVid.removeAttribute('autoplay'); heroVid.pause(); }
+  if(heroVid && !reduceMotion && 'IntersectionObserver' in window){
     new IntersectionObserver(function(entries){
       entries.forEach(function(en){
-        if(en.isIntersecting){ var p = reel.play(); if(p && p.catch){ p.catch(function(){}); } }
-        else { reel.pause(); }
+        if(en.isIntersecting){ var pr = heroVid.play(); if(pr && pr.catch){ pr.catch(function(){}); } }
+        else { heroVid.pause(); }
       });
-    }, { threshold:0.25 }).observe(reel);
+    }, { threshold:0.05 }).observe(heroVid);
   }
 
   var projSlider = document.getElementById('proj-slider');
