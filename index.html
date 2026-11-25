@@ -706,18 +706,20 @@
         <div class="row"><span class="k label">ADDRESS</span><span>601, Al Danah Building, Hamdan Bin Mohammed Street, Abu Dhabi, UAE – 22208</span></div>
       </div>
     </div>
-    <form class="reveal" style="transition-delay:.15s" onsubmit="event.preventDefault(); this.querySelector('.form-note').textContent='Thanks — we\'ll be in touch soon.';">
+    <form id="enquiry-form" class="reveal" style="transition-delay:.15s" name="enquiry" method="POST" action="/" data-netlify="true" netlify-honeypot="bot-field">
+      <input type="hidden" name="form-name" value="enquiry">
+      <p style="display:none"><label>Leave this empty: <input name="bot-field"></label></p>
       <div class="row2">
-        <div class="field"><label>NAME</label><input type="text" required></div>
-        <div class="field"><label>COMPANY</label><input type="text"></div>
+        <div class="field"><label>NAME</label><input type="text" name="name" required></div>
+        <div class="field"><label>COMPANY</label><input type="text" name="company"></div>
       </div>
       <div class="row2">
-        <div class="field"><label>EMAIL</label><input type="email" required></div>
-        <div class="field"><label>PHONE</label><input type="tel"></div>
+        <div class="field"><label>EMAIL</label><input type="email" name="email" required></div>
+        <div class="field"><label>PHONE</label><input type="tel" name="phone"></div>
       </div>
       <div class="field">
         <label>PROJECT TYPE</label>
-        <select>
+        <select name="project_type">
           <option>Commercial office</option>
           <option>Retail</option>
           <option>Hospitality</option>
@@ -728,7 +730,7 @@
       </div>
       <div class="field">
         <label>TELL US ABOUT THE SPACE</label>
-        <textarea rows="3"></textarea>
+        <textarea rows="3" name="message"></textarea>
       </div>
       <button type="submit" class="btn" style="align-self:flex-start; margin-top:8px;">Send Enquiry</button>
       <div class="form-note"></div>
@@ -854,6 +856,26 @@
   });
   window.addEventListener('resize', function(){
     if(window.innerWidth > 860){ closeMenu(); }
+  });
+
+  var enquiryForm = document.getElementById('enquiry-form');
+  enquiryForm.addEventListener('submit', function(e){
+    e.preventDefault();
+    var note = enquiryForm.querySelector('.form-note');
+    var btn = enquiryForm.querySelector('button[type="submit"]');
+    btn.disabled = true;
+    note.textContent = 'Sending…';
+    fetch('/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: new URLSearchParams(new FormData(enquiryForm)).toString()
+    }).then(function(res){
+      if(!res.ok) throw new Error('failed');
+      enquiryForm.reset();
+      note.textContent = 'Thank you. We have received your enquiry and will be in touch soon.';
+    }).catch(function(){
+      note.textContent = 'Sorry, something went wrong. Please WhatsApp or call us instead.';
+    }).then(function(){ btn.disabled = false; });
   });
 
   var waToggle = document.querySelector('.whatsapp-toggle');
