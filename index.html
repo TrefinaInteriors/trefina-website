@@ -252,6 +252,13 @@
     filter:brightness(0) invert(1); opacity:.96; transform:none; transition:none;
   }
   .pcard:hover .pcard-logo{ transform:none; }
+  .pcard{ cursor:zoom-in; }
+  .pcard:focus-visible{ outline:2px solid var(--terracotta); outline-offset:3px; }
+  .pcard-count{
+    position:absolute; top:22px; right:20px; z-index:2;
+    background:rgba(20,22,18,.62); color:#fff; font-size:12px; letter-spacing:.04em;
+    padding:6px 11px; border-radius:20px; backdrop-filter:blur(4px);
+  }
   .pcard-cap{ position:absolute; left:24px; right:24px; bottom:22px; z-index:2; color:#fff; }
   .pcard-cap .label{ color:#F0C9B0; font-size:11px; margin-bottom:8px; }
   .pcard-cap h3{ font-size:clamp(20px,2.2vw,26px); line-height:1.15; margin-bottom:6px; }
@@ -446,14 +453,6 @@
   }
 
   /* ---------- Gallery + lightbox ---------- */
-  .gallery-grid{ column-count:3; column-gap:14px; }
-  .gallery-grid button{
-    display:block; width:100%; margin:0 0 14px; padding:0; border:0; cursor:zoom-in;
-    background:var(--stone); border-radius:4px; overflow:hidden; break-inside:avoid;
-  }
-  .gallery-grid img{ width:100%; height:auto; transition:transform .6s cubic-bezier(.16,1,.3,1); }
-  .gallery-grid button:hover img{ transform:scale(1.04); }
-  @media (max-width:900px){ .gallery-grid{ column-count:2; } }
   .lightbox{
     position:fixed; inset:0; z-index:100; display:none; align-items:center; justify-content:center;
     background:rgba(20,22,18,.94);
@@ -522,7 +521,6 @@
       <a href="#projects">Projects</a>
       <a href="#about">About</a>
       <a href="#services">Services</a>
-      <a href="#gallery">Gallery</a>
       <a href="#process">Process</a>
       <a href="#contact">Contact</a>
     </div>
@@ -536,7 +534,6 @@
     <a href="#projects">Projects</a>
     <a href="#about">About</a>
     <a href="#services">Services</a>
-    <a href="#gallery">Gallery</a>
     <a href="#process">Process</a>
     <a href="#contact">Contact</a>
     <a href="#contact" class="btn">Request a Quote</a>
@@ -575,7 +572,6 @@
   </div>
 </section>
 
-
 <section class="featured" id="projects">
   <div class="wrap featured-head reveal">
     <div>
@@ -588,8 +584,9 @@
     </div>
   </div>
   <div class="slider" id="proj-slider">
-      <article class="pcard">
+      <article class="pcard" role="button" tabindex="0" aria-label="View photos: Danube Home Showroom, Sharjah" data-photos="[{&quot;s&quot;: &quot;images/projects/sharjah-showroom-2.jpg&quot;, &quot;a&quot;: &quot;Showroom display with a bath under glass pendant lights&quot;}, {&quot;s&quot;: &quot;images/projects/sharjah-showroom-3.jpg&quot;, &quot;a&quot;: &quot;Freestanding bath against a palm leaf wall covering&quot;}, {&quot;s&quot;: &quot;images/projects/sharjah-showroom-4.jpg&quot;, &quot;a&quot;: &quot;Palm leaf wall covering behind a freestanding bath&quot;}, {&quot;s&quot;: &quot;images/projects/sharjah-showroom-6.jpg&quot;, &quot;a&quot;: &quot;Bathroom display with a round mirror, an arched opening and a freestanding bath&quot;}, {&quot;s&quot;: &quot;images/projects/sharjah-showroom-7.jpg&quot;, &quot;a&quot;: &quot;Freestanding bath with a recessed lit niche and a black-framed shower screen&quot;}, {&quot;s&quot;: &quot;images/projects/sharjah-showroom-8.jpg&quot;, &quot;a&quot;: &quot;Shower enclosure, wall-hung vanity and an illuminated round mirror&quot;}, {&quot;s&quot;: &quot;images/projects/sharjah-showroom-9.jpg&quot;, &quot;a&quot;: &quot;Black-framed shower, tiled feature wall and an illuminated round mirror&quot;}, {&quot;s&quot;: &quot;images/projects/sharjah-showroom-10.jpg&quot;, &quot;a&quot;: &quot;Showroom walkway with a lit floor edge and bathroom displays&quot;}, {&quot;s&quot;: &quot;images/projects/sharjah-showroom-11.jpg&quot;, &quot;a&quot;: &quot;Bathroom displays with dark basins, mirrors and a lit floor edge&quot;}, {&quot;s&quot;: &quot;images/projects/sharjah-showroom-12.jpg&quot;, &quot;a&quot;: &quot;Whirlpool bath in front of a planted green wall&quot;}]">
         <img src="images/projects/sharjah-showroom-2.jpg" alt="Freestanding bath in front of a backlit arched stone feature wall in a Danube Home showroom in Sharjah">
+        <span class="pcard-count">10 photos</span>
         <img class="pcard-logo" src="images/logo-danubehome.svg" alt="Danube Home logo" loading="lazy" decoding="async">
         <div class="pcard-cap">
           <div class="label">RETAIL</div>
@@ -597,8 +594,9 @@
           <p>Danube Home &middot; Sharjah</p>
         </div>
       </article>
-      <article class="pcard">
+      <article class="pcard" role="button" tabindex="0" aria-label="View photos: Danube Home Training Academy" data-photos="[{&quot;s&quot;: &quot;images/projects/du-academy-1.jpg&quot;, &quot;a&quot;: &quot;Danube Home Training Academy training room with a coffered ceiling&quot;}, {&quot;s&quot;: &quot;images/projects/du-academy-2.jpg&quot;, &quot;a&quot;: &quot;Training room with a blue wall and wall lights&quot;}, {&quot;s&quot;: &quot;images/projects/du-academy-3.jpg&quot;, &quot;a&quot;: &quot;Training room with warm wall lights and a lit ceiling&quot;}, {&quot;s&quot;: &quot;images/projects/du-academy-4.jpg&quot;, &quot;a&quot;: &quot;Training room seen down its length&quot;}, {&quot;s&quot;: &quot;images/projects/du-academy-5.jpg&quot;, &quot;a&quot;: &quot;Tiered timber seating in the training room&quot;}, {&quot;s&quot;: &quot;images/projects/du-academy-6.jpg&quot;, &quot;a&quot;: &quot;Training room with a textured wall and recessed niches&quot;}]">
         <img src="images/projects/du-academy-1.jpg" alt="Finished training room with a dark coffered ceiling, blue wall and wall lights at the Danube Home Training Academy" loading="lazy" decoding="async">
+        <span class="pcard-count">6 photos</span>
         <img class="pcard-logo" src="images/logo-danubehome.svg" alt="Danube Home logo" loading="lazy" decoding="async">
         <div class="pcard-cap">
           <div class="label">TRAINING FACILITY</div>
@@ -606,8 +604,9 @@
           <p>Danube Home &middot; Dubai</p>
         </div>
       </article>
-      <article class="pcard">
+      <article class="pcard" role="button" tabindex="0" aria-label="View photos: Ideal Standard Showroom, Abu Dhabi" data-photos="[{&quot;s&quot;: &quot;images/projects/ideal-standard-1.jpg&quot;, &quot;a&quot;: &quot;Ideal Standard showroom exterior&quot;}, {&quot;s&quot;: &quot;images/projects/ideal-standard-2.jpg&quot;, &quot;a&quot;: &quot;Black-clad corner of the Ideal Standard showroom building&quot;}, {&quot;s&quot;: &quot;images/projects/ideal-standard-4.jpg&quot;, &quot;a&quot;: &quot;Ideal Standard showroom interior with backlit display walls&quot;}, {&quot;s&quot;: &quot;images/projects/ideal-standard-5.jpg&quot;, &quot;a&quot;: &quot;Showroom aisle with a round display unit and a planted feature&quot;}]">
         <img src="images/projects/ideal-standard-1.jpg" alt="Ideal Standard showroom storefront with arched windows and signage" loading="lazy" decoding="async">
+        <span class="pcard-count">4 photos</span>
         <img class="pcard-logo" src="images/logo-casamilano.svg" alt="Casa Milano logo" loading="lazy" decoding="async">
         <div class="pcard-cap">
           <div class="label">RETAIL</div>
@@ -615,7 +614,7 @@
           <p>Casa Milano &middot; Abu Dhabi</p>
         </div>
       </article>
-      <article class="pcard">
+      <article class="pcard" role="button" tabindex="0" aria-label="View photos: Kempinski Hotel, Downtown Dubai" data-photos="[{&quot;s&quot;: &quot;images/kempinski-dining.jpg&quot;, &quot;a&quot;: &quot;Finished dining and buffet counter fit-out at Kempinski Hotel, Downtown Dubai&quot;}]">
         <img src="images/kempinski-dining.jpg" alt="Finished dining and buffet counter fit-out at Kempinski Hotel, Downtown Dubai" loading="lazy" decoding="async">
         <img class="pcard-logo" src="images/logo-kempinski.png" alt="Kempinski logo" loading="lazy" decoding="async">
         <div class="pcard-cap">
@@ -624,7 +623,7 @@
           <p>Kempinski &middot; Downtown Dubai</p>
         </div>
       </article>
-      <article class="pcard">
+      <article class="pcard" role="button" tabindex="0" aria-label="View photos: Rixos Premium, JBR" data-photos="[{&quot;s&quot;: &quot;images/rixos-lobby.jpg&quot;, &quot;a&quot;: &quot;Curved cove-lit ceiling in the lobby at Rixos Premium, Jumeirah Beach Residence&quot;}]">
         <img src="images/rixos-lobby.jpg" alt="Curved cove-lit ceiling in the lobby at Rixos Premium, Jumeirah Beach Residence" loading="lazy" decoding="async">
         <img class="pcard-logo" src="images/logo-rixos.png" alt="Rixos Hotels logo" loading="lazy" decoding="async">
         <div class="pcard-cap">
@@ -636,7 +635,6 @@
   </div>
 </section>
 
-
 <section class="stats">
   <div class="wrap">
     <div class="stat reveal"><div class="n" data-count="2020">0</div><div class="label l">FOUNDED IN THE UAE</div></div>
@@ -645,8 +643,6 @@
     <div class="stat reveal"><div class="n" data-count="3">0</div><div class="label l">SECTORS SERVED</div></div>
   </div>
 </section>
-
-
 
 <section class="section" id="about">
   <div class="wrap about-grid">
@@ -661,7 +657,6 @@
     </div>
   </div>
 </section>
-
 
 <section class="section" id="services">
   <div class="wrap">
@@ -704,40 +699,6 @@
     </div>
   </div>
 </section>
-
-
-<section class="section" id="gallery">
-  <div class="wrap">
-    <div class="section-head reveal">
-      <div class="label">GALLERY</div>
-      <h2>A closer look at the work.</h2>
-      <p>Tap any photo to view it full screen.</p>
-    </div>
-    <div class="gallery-grid" id="gallery-grid">
-      <button type="button" aria-label="Open photo: Danube Home showroom, Sharjah"><img src="images/projects/sharjah-showroom-2.jpg" alt="Showroom display with a bath under glass pendant lights" loading="lazy" decoding="async"></button>
-      <button type="button" aria-label="Open photo: Danube Home Training Academy"><img src="images/projects/du-academy-1.jpg" alt="Danube Home Training Academy training room with a coffered ceiling" loading="lazy" decoding="async"></button>
-      <button type="button" aria-label="Open photo: Danube Home showroom, Sharjah"><img src="images/projects/sharjah-showroom-3.jpg" alt="Freestanding bath against a palm leaf wall covering" loading="lazy" decoding="async"></button>
-      <button type="button" aria-label="Open photo: Ideal Standard showroom"><img src="images/projects/ideal-standard-1.jpg" alt="Ideal Standard showroom exterior" loading="lazy" decoding="async"></button>
-      <button type="button" aria-label="Open photo: Danube Home Training Academy"><img src="images/projects/du-academy-2.jpg" alt="Training room with a blue wall and wall lights" loading="lazy" decoding="async"></button>
-      <button type="button" aria-label="Open photo: Danube Home showroom, Sharjah"><img src="images/projects/sharjah-showroom-4.jpg" alt="Palm leaf wall covering behind a freestanding bath" loading="lazy" decoding="async"></button>
-      <button type="button" aria-label="Open photo: Ideal Standard showroom"><img src="images/projects/ideal-standard-2.jpg" alt="Black-clad corner of the Ideal Standard showroom building" loading="lazy" decoding="async"></button>
-      <button type="button" aria-label="Open photo: Danube Home showroom, Sharjah"><img src="images/projects/sharjah-showroom-6.jpg" alt="Bathroom display with a round mirror, an arched opening and a freestanding bath" loading="lazy" decoding="async"></button>
-      <button type="button" aria-label="Open photo: Danube Home Training Academy"><img src="images/projects/du-academy-3.jpg" alt="Training room with warm wall lights and a lit ceiling" loading="lazy" decoding="async"></button>
-      <button type="button" aria-label="Open photo: Danube Home showroom, Sharjah"><img src="images/projects/sharjah-showroom-7.jpg" alt="Freestanding bath with a recessed lit niche and a black-framed shower screen" loading="lazy" decoding="async"></button>
-      <button type="button" aria-label="Open photo: Ideal Standard showroom"><img src="images/projects/ideal-standard-4.jpg" alt="Ideal Standard showroom interior with backlit display walls" loading="lazy" decoding="async"></button>
-      <button type="button" aria-label="Open photo: Danube Home showroom, Sharjah"><img src="images/projects/sharjah-showroom-8.jpg" alt="Shower enclosure, wall-hung vanity and an illuminated round mirror" loading="lazy" decoding="async"></button>
-      <button type="button" aria-label="Open photo: Danube Home showroom, Sharjah"><img src="images/projects/sharjah-showroom-9.jpg" alt="Black-framed shower, tiled feature wall and an illuminated round mirror" loading="lazy" decoding="async"></button>
-      <button type="button" aria-label="Open photo: Danube Home Training Academy"><img src="images/projects/du-academy-4.jpg" alt="Training room seen down its length" loading="lazy" decoding="async"></button>
-      <button type="button" aria-label="Open photo: Danube Home showroom, Sharjah"><img src="images/projects/sharjah-showroom-10.jpg" alt="Showroom walkway with a lit floor edge and bathroom displays" loading="lazy" decoding="async"></button>
-      <button type="button" aria-label="Open photo: Ideal Standard showroom"><img src="images/projects/ideal-standard-5.jpg" alt="Showroom aisle with a round display unit and a planted feature" loading="lazy" decoding="async"></button>
-      <button type="button" aria-label="Open photo: Danube Home showroom, Sharjah"><img src="images/projects/sharjah-showroom-11.jpg" alt="Bathroom displays with dark basins, mirrors and a lit floor edge" loading="lazy" decoding="async"></button>
-      <button type="button" aria-label="Open photo: Danube Home Training Academy"><img src="images/projects/du-academy-5.jpg" alt="Tiered timber seating in the training room" loading="lazy" decoding="async"></button>
-      <button type="button" aria-label="Open photo: Danube Home showroom, Sharjah"><img src="images/projects/sharjah-showroom-12.jpg" alt="Whirlpool bath in front of a planted green wall" loading="lazy" decoding="async"></button>
-      <button type="button" aria-label="Open photo: Danube Home Training Academy"><img src="images/projects/du-academy-6.jpg" alt="Training room with a textured wall and recessed niches" loading="lazy" decoding="async"></button>
-    </div>
-  </div>
-</section>
-
 
 <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Photo viewer" hidden>
   <button type="button" class="lb-btn lb-close" aria-label="Close">&times;</button>
@@ -1036,14 +997,20 @@
 
   var lb = document.getElementById('lightbox');
   var lbImg = lb.querySelector('.lb-img');
-  var galleryImgs = Array.prototype.slice.call(document.querySelectorAll('#gallery-grid img'));
+  var lbPrev = lb.querySelector('.lb-prev');
+  var lbNext = lb.querySelector('.lb-next');
+  var lbList = [];
   var lbIndex = 0;
   function showPhoto(i){
-    lbIndex = (i + galleryImgs.length) % galleryImgs.length;
-    lbImg.src = galleryImgs[lbIndex].src;
-    lbImg.alt = galleryImgs[lbIndex].alt;
+    lbIndex = (i + lbList.length) % lbList.length;
+    lbImg.src = lbList[lbIndex].s;
+    lbImg.alt = lbList[lbIndex].a;
   }
-  function openLb(i){
+  function openLb(list, i){
+    lbList = list;
+    var multi = list.length > 1;
+    lbPrev.style.display = multi ? '' : 'none';
+    lbNext.style.display = multi ? '' : 'none';
     showPhoto(i);
     lb.hidden = false;
     lb.classList.add('open');
@@ -1055,18 +1022,23 @@
     lb.hidden = true;
     document.body.style.overflow = '';
   }
-  galleryImgs.forEach(function(img, i){
-    img.parentNode.addEventListener('click', function(){ openLb(i); });
+  Array.prototype.forEach.call(document.querySelectorAll('.pcard'), function(card){
+    var list = JSON.parse(card.getAttribute('data-photos'));
+    function open(){ openLb(list, 0); }
+    card.addEventListener('click', open);
+    card.addEventListener('keydown', function(e){
+      if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); open(); }
+    });
   });
   lb.querySelector('.lb-close').addEventListener('click', closeLb);
-  lb.querySelector('.lb-prev').addEventListener('click', function(){ showPhoto(lbIndex - 1); });
-  lb.querySelector('.lb-next').addEventListener('click', function(){ showPhoto(lbIndex + 1); });
+  lbPrev.addEventListener('click', function(){ showPhoto(lbIndex - 1); });
+  lbNext.addEventListener('click', function(){ showPhoto(lbIndex + 1); });
   lb.addEventListener('click', function(e){ if(e.target === lb){ closeLb(); } });
   document.addEventListener('keydown', function(e){
     if(!lb.classList.contains('open')) return;
     if(e.key === 'Escape') closeLb();
-    if(e.key === 'ArrowLeft') showPhoto(lbIndex - 1);
-    if(e.key === 'ArrowRight') showPhoto(lbIndex + 1);
+    if(lbList.length > 1 && e.key === 'ArrowLeft') showPhoto(lbIndex - 1);
+    if(lbList.length > 1 && e.key === 'ArrowRight') showPhoto(lbIndex + 1);
   });
 
   var projSlider = document.getElementById('proj-slider');
