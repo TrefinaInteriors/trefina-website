@@ -213,6 +213,14 @@
   .btn-ghost-light:hover{ background:#fff; color:var(--ink); transform:translateY(-2px); }
   .hero2 .quick-form{ margin-top:38px; background:rgba(244,239,227,.96); max-width:560px; }
 
+  /* ---------- Showreel video ---------- */
+  .showreel{ padding:56px 0 72px; }
+  .showreel-head{ margin-bottom:32px; }
+  .showreel-head .label{ color:var(--terracotta-deep); margin-bottom:12px; }
+  .showreel-head h2{ font-size:clamp(28px,3.6vw,46px); line-height:1.1; max-width:760px; }
+  .showreel-frame{ position:relative; aspect-ratio:16/9; border-radius:4px; overflow:hidden; background:var(--espresso); }
+  .showreel-frame video{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; display:block; }
+
   /* ---------- Featured projects slider ---------- */
   .featured{ padding:96px 0 48px; }
   .featured-head{ display:flex; justify-content:space-between; align-items:flex-end; gap:24px; margin-bottom:36px; }
@@ -635,6 +643,20 @@
   </div>
 </section>
 
+<section class="showreel">
+  <div class="wrap">
+    <div class="showreel-head reveal">
+      <div class="label">WALKTHROUGH</div>
+      <h2>Inside the Danube Home showroom, Sharjah.</h2>
+    </div>
+    <div class="showreel-frame reveal">
+      <video id="showreel-video" autoplay muted loop playsinline preload="metadata" poster="video/sharjah-showroom-poster.jpg" aria-label="Walkthrough video of the Danube Home showroom in Sharjah" disablepictureinpicture>
+        <source src="video/sharjah-showroom.mp4" type="video/mp4">
+      </video>
+    </div>
+  </div>
+</section>
+
 <section class="stats">
   <div class="wrap">
     <div class="stat reveal"><div class="n" data-count="2020">0</div><div class="label l">FOUNDED IN THE UAE</div></div>
@@ -1040,6 +1062,17 @@
     if(lbList.length > 1 && e.key === 'ArrowLeft') showPhoto(lbIndex - 1);
     if(lbList.length > 1 && e.key === 'ArrowRight') showPhoto(lbIndex + 1);
   });
+
+  var reel = document.getElementById('showreel-video');
+  if(reel && reduceMotion){ reel.removeAttribute('autoplay'); reel.pause(); }
+  if(reel && !reduceMotion && 'IntersectionObserver' in window){
+    new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if(en.isIntersecting){ var p = reel.play(); if(p && p.catch){ p.catch(function(){}); } }
+        else { reel.pause(); }
+      });
+    }, { threshold:0.25 }).observe(reel);
+  }
 
   var projSlider = document.getElementById('proj-slider');
   function slideBy(dir){
