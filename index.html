@@ -192,38 +192,70 @@
   }
 
   /* ---------- Hero ---------- */
-  .hero{ padding:64px 0 40px; }
-  .hero-grid{
-    display:grid; grid-template-columns:1.05fr 0.95fr; gap:56px; align-items:center;
+  .hero2{
+    position:relative; display:flex; align-items:flex-end; overflow:hidden;
+    min-height:calc(100vh - 84px); min-height:calc(100svh - 84px); max-height:900px;
+    background:var(--espresso); color:var(--cream);
   }
-  .eyebrow{ color:var(--terracotta-deep); margin-bottom:18px; display:flex; align-items:center; gap:10px; }
-  .eyebrow::before{ content:''; width:26px; height:1px; background:var(--terracotta); display:inline-block; }
-  .hero h1{
-    font-size:clamp(40px, 5.4vw, 68px);
-    line-height:1.04;
-    letter-spacing:-0.01em;
+  .hero2-bg{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+  .hero2-shade{
+    position:absolute; inset:0;
+    background:linear-gradient(180deg, rgba(20,22,18,.38) 0%, rgba(20,22,18,.22) 38%, rgba(20,22,18,.82) 100%);
   }
-  .hero h1 em{ font-style:italic; color:var(--terracotta); font-weight:400; }
-  .hero p.lede{
-    font-size:17px; line-height:1.65; color:var(--ink-soft);
-    max-width:460px; margin:26px 0 34px;
-  }
+  .hero2-inner{ position:relative; width:100%; padding-top:110px; padding-bottom:56px; }
+  .hero2-eyebrow{ color:#F0C9B0; margin-bottom:18px; display:flex; align-items:center; gap:10px; }
+  .hero2-eyebrow::before{ content:''; width:26px; height:1px; background:var(--terracotta); display:inline-block; }
+  .hero2 h1{ font-size:clamp(40px,6vw,84px); line-height:1.03; letter-spacing:-0.015em; max-width:900px; color:#fff; }
+  .hero2 h1 em{ font-style:italic; color:#F2A57E; font-weight:400; }
+  .hero2 p.lede{ font-size:18px; line-height:1.6; color:#E7E0D0; max-width:520px; margin:22px 0 30px; }
   .hero-actions{ display:flex; gap:16px; align-items:center; flex-wrap:wrap; }
-  .hero-actions .note{ font-family:'Space Mono', monospace; font-size:11px; color:var(--ink-soft); letter-spacing:0.06em; }
-  .hero-visual{ position:relative; }
-  .hero-visual .arch{ aspect-ratio:3/4; }
-  .hero-tag{
-    position:absolute; left:-24px; bottom:36px;
-    background:var(--ink); color:var(--cream);
-    padding:18px 22px; border-radius:3px;
-    max-width:230px; box-shadow:0 20px 40px -12px rgba(0,0,0,0.35);
+  .btn-ghost-light{ background:transparent; color:#fff; border:1px solid rgba(255,255,255,.75); }
+  .btn-ghost-light:hover{ background:#fff; color:var(--ink); transform:translateY(-2px); }
+  .hero2 .quick-form{ margin-top:38px; background:rgba(244,239,227,.96); max-width:560px; }
+
+  /* ---------- Featured projects slider ---------- */
+  .featured{ padding:96px 0 48px; }
+  .featured-head{ display:flex; justify-content:space-between; align-items:flex-end; gap:24px; margin-bottom:36px; }
+  .featured-head .label{ color:var(--terracotta-deep); margin-bottom:12px; }
+  .featured-head h2{ font-size:clamp(32px,4vw,52px); line-height:1.08; }
+  .slider-btns{ display:flex; gap:10px; flex-shrink:0; }
+  .slider-btn{
+    width:48px; height:48px; border-radius:50%; border:1px solid var(--ink); background:transparent;
+    color:var(--ink); font-size:26px; line-height:1; cursor:pointer;
+    display:flex; align-items:center; justify-content:center; transition:background .2s ease, color .2s ease;
   }
-  .hero-tag .num{ font-family:'Fraunces', serif; font-size:26px; color:var(--terracotta); }
-  .hero-tag .desc{ font-size:12px; color:#D9D3C4; margin-top:4px; line-height:1.5; }
-  @media (max-width:900px){
-    .hero-grid{ grid-template-columns:1fr; }
-    .hero-tag{ left:16px; }
+  .slider-btn:hover{ background:var(--ink); color:var(--cream); }
+  .slider{
+    display:flex; gap:20px; overflow-x:auto; scroll-snap-type:x mandatory;
+    padding:0 max(32px, calc((100vw - 1180px)/2 + 32px)) 16px;
+    scroll-padding-left:max(32px, calc((100vw - 1180px)/2 + 32px));
+    scrollbar-width:none; -webkit-overflow-scrolling:touch;
   }
+  .slider::-webkit-scrollbar{ display:none; }
+  .pcard{
+    position:relative; flex:0 0 min(82vw,440px); aspect-ratio:4/5;
+    border-radius:4px; overflow:hidden; scroll-snap-align:start; background:var(--stone);
+  }
+  .pcard img{ width:100%; height:100%; object-fit:cover; transition:transform .8s cubic-bezier(.16,1,.3,1); }
+  .pcard:hover img{ transform:scale(1.05); }
+  .pcard::after{
+    content:''; position:absolute; inset:0; pointer-events:none;
+    background:linear-gradient(180deg, transparent 50%, rgba(20,22,18,.85) 100%);
+  }
+  .pcard::before{
+    content:''; position:absolute; inset:0; z-index:1; pointer-events:none;
+    background:linear-gradient(180deg, rgba(20,22,18,.5) 0%, transparent 26%);
+  }
+  .pcard .pcard-logo{
+    position:absolute; top:22px; left:24px; z-index:2; width:auto; height:auto;
+    max-height:32px; max-width:170px; object-fit:contain; object-position:left center;
+    filter:brightness(0) invert(1); opacity:.96; transform:none; transition:none;
+  }
+  .pcard:hover .pcard-logo{ transform:none; }
+  .pcard-cap{ position:absolute; left:24px; right:24px; bottom:22px; z-index:2; color:#fff; }
+  .pcard-cap .label{ color:#F0C9B0; font-size:11px; margin-bottom:8px; }
+  .pcard-cap h3{ font-size:clamp(20px,2.2vw,26px); line-height:1.15; margin-bottom:6px; }
+  .pcard-cap p{ font-size:13px; color:#E0D9C8; margin:0; }
 
   /* strip of clients / stats */
   .stats{
@@ -236,7 +268,7 @@
   .stat .l{ margin-top:2px; color:var(--ink-soft); }
 
   /* ---------- Section heading pattern ---------- */
-  .section{ padding:120px 0; }
+  .section{ padding:104px 0; }
   .section-head{ max-width:640px; margin-bottom:64px; }
   .section-head .label{ color:var(--terracotta-deep); margin-bottom:16px; }
   .section-head h2{ font-size:clamp(30px,3.6vw,44px); line-height:1.12; }
@@ -487,9 +519,9 @@
       </div>
     </div>
     <div class="navlinks">
+      <a href="#projects">Projects</a>
       <a href="#about">About</a>
       <a href="#services">Services</a>
-      <a href="#projects">Projects</a>
       <a href="#gallery">Gallery</a>
       <a href="#process">Process</a>
       <a href="#contact">Contact</a>
@@ -501,9 +533,9 @@
     </button>
   </nav>
   <div class="mobile-menu" id="mobile-menu">
+    <a href="#projects">Projects</a>
     <a href="#about">About</a>
     <a href="#services">Services</a>
-    <a href="#projects">Projects</a>
     <a href="#gallery">Gallery</a>
     <a href="#process">Process</a>
     <a href="#contact">Contact</a>
@@ -511,22 +543,23 @@
   </div>
 </header>
 
-<section class="hero">
-  <div class="wrap hero-grid">
-    <div>
-      <div class="label eyebrow">INTERIOR FIT-OUT COMPANY &middot; ABU DHABI, UAE</div>
-      <h1>Spaces designed<br>and <em>built</em><br>under one roof.</h1>
-      <p class="lede">Trefina Interiors LLC has delivered interior fit-outs across the UAE since 2020 — from concept design through MEP, joinery, metalwork, paint and flooring, handled by one in-house team.</p>
-      <div class="hero-actions">
-        <a href="#contact" class="btn">Start Your Project</a>
-        <a href="#projects" class="btn btn-ghost">View Our Work</a>
-      </div>
-      <form id="quick-form" class="quick-form" name="quick-estimate" method="POST" action="/" data-netlify="true" netlify-honeypot="bot-field">
+<section class="hero2">
+  <img class="hero2-bg" src="images/hero-wide.jpg" alt="Finished training room with a deep blue feature wall, warm wall lights and a dark coffered ceiling, a Trefina Interiors project">
+  <div class="hero2-shade"></div>
+  <div class="wrap hero2-inner">
+    <div class="label hero2-eyebrow">INTERIOR FIT-OUT COMPANY &middot; ABU DHABI, UAE</div>
+    <h1>Spaces designed and <em>built</em><br>under one roof.</h1>
+    <p class="lede">Interior fit-outs across the UAE since 2020, designed and built by one in-house team.</p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn">Start Your Project</a>
+      <a href="#projects" class="btn btn-ghost-light">View Our Work</a>
+    </div>
+    <form id="quick-form" class="quick-form" name="quick-estimate" method="POST" action="/" data-netlify="true" netlify-honeypot="bot-field">
         <input type="hidden" name="form-name" value="quick-estimate">
         <p style="display:none"><label>Leave this empty: <input name="bot-field"></label></p>
         <div class="label quick-title">GET A FREE PROJECT ESTIMATE</div>
         <div class="quick-row">
-          <input type="tel" name="phone" placeholder="Your phone number" aria-label="Your phone number" required>
+          <input type="tel" name="phone" placeholder="Phone number" aria-label="Your phone number" required>
           <select name="project_type" aria-label="Project type">
             <option>Commercial office</option>
             <option>Retail</option>
@@ -539,33 +572,81 @@
         </div>
         <div class="form-note"></div>
       </form>
-    </div>
-    <div class="hero-visual">
-      <div class="arch arch-outline">
-        <img src="images/hero-majlis-lounge.jpg" alt="Ornate majlis lounge with custom mother-of-pearl inlaid joinery, a Trefina Interiors project">
-      </div>
-      <div class="hero-tag">
-        <div class="num">2020</div>
-        <div class="desc">the year Trefina Interiors began delivering fit-outs across the UAE</div>
-      </div>
-    </div>
   </div>
 </section>
+
+
+<section class="featured" id="projects">
+  <div class="wrap featured-head reveal">
+    <div>
+      <div class="label">SELECTED WORK</div>
+      <h2>Recent projects.</h2>
+    </div>
+    <div class="slider-btns">
+      <button type="button" class="slider-btn" id="proj-prev" aria-label="Previous project">&#8249;</button>
+      <button type="button" class="slider-btn" id="proj-next" aria-label="Next project">&#8250;</button>
+    </div>
+  </div>
+  <div class="slider" id="proj-slider">
+      <article class="pcard">
+        <img src="images/projects/sharjah-showroom-2.jpg" alt="Freestanding bath in front of a backlit arched stone feature wall in a Danube Home showroom in Sharjah">
+        <img class="pcard-logo" src="images/logo-danubehome.svg" alt="Danube Home logo" loading="lazy" decoding="async">
+        <div class="pcard-cap">
+          <div class="label">RETAIL</div>
+          <h3>Danube Home Showroom, Sharjah</h3>
+          <p>Danube Home &middot; Sharjah</p>
+        </div>
+      </article>
+      <article class="pcard">
+        <img src="images/projects/du-academy-1.jpg" alt="Finished training room with a dark coffered ceiling, blue wall and wall lights at the Danube Home Training Academy" loading="lazy" decoding="async">
+        <img class="pcard-logo" src="images/logo-danubehome.svg" alt="Danube Home logo" loading="lazy" decoding="async">
+        <div class="pcard-cap">
+          <div class="label">TRAINING FACILITY</div>
+          <h3>Danube Home Training Academy</h3>
+          <p>Danube Home &middot; Dubai</p>
+        </div>
+      </article>
+      <article class="pcard">
+        <img src="images/projects/ideal-standard-1.jpg" alt="Ideal Standard showroom storefront with arched windows and signage" loading="lazy" decoding="async">
+        <img class="pcard-logo" src="images/logo-casamilano.svg" alt="Casa Milano logo" loading="lazy" decoding="async">
+        <div class="pcard-cap">
+          <div class="label">RETAIL</div>
+          <h3>Ideal Standard Showroom, Abu Dhabi</h3>
+          <p>Casa Milano &middot; Abu Dhabi</p>
+        </div>
+      </article>
+      <article class="pcard">
+        <img src="images/kempinski-dining.jpg" alt="Finished dining and buffet counter fit-out at Kempinski Hotel, Downtown Dubai" loading="lazy" decoding="async">
+        <img class="pcard-logo" src="images/logo-kempinski.png" alt="Kempinski logo" loading="lazy" decoding="async">
+        <div class="pcard-cap">
+          <div class="label">HOSPITALITY</div>
+          <h3>Kempinski Hotel, Downtown Dubai</h3>
+          <p>Kempinski &middot; Downtown Dubai</p>
+        </div>
+      </article>
+      <article class="pcard">
+        <img src="images/rixos-lobby.jpg" alt="Curved cove-lit ceiling in the lobby at Rixos Premium, Jumeirah Beach Residence" loading="lazy" decoding="async">
+        <img class="pcard-logo" src="images/logo-rixos.png" alt="Rixos Hotels logo" loading="lazy" decoding="async">
+        <div class="pcard-cap">
+          <div class="label">HOSPITALITY</div>
+          <h3>Rixos Premium, JBR</h3>
+          <p>Rixos Premium &middot; JBR, Dubai</p>
+        </div>
+      </article>
+  </div>
+</section>
+
 
 <section class="stats">
   <div class="wrap">
     <div class="stat reveal"><div class="n" data-count="2020">0</div><div class="label l">FOUNDED IN THE UAE</div></div>
     <div class="stat reveal"><div class="n" data-count="10">0</div><div class="label l">SPECIALIZED SERVICES</div></div>
-    <div class="stat reveal"><div class="n" data-count="6">0</div><div class="label l">LANDMARK PROJECTS</div></div>
+    <div class="stat reveal"><div class="n" data-count="9">0</div><div class="label l">CLIENT BRANDS</div></div>
     <div class="stat reveal"><div class="n" data-count="3">0</div><div class="label l">SECTORS SERVED</div></div>
   </div>
 </section>
 
-<section class="section philosophy">
-  <div class="wrap">
-    <p class="statement reveal">Our work is guided by <span class="hl">excellence, innovation, reliability and a client-driven approach</span> — one team handling everything from first idea to final fit-out, so nothing gets lost between design and delivery.</p>
-  </div>
-</section>
+
 
 <section class="section" id="about">
   <div class="wrap about-grid">
@@ -580,6 +661,7 @@
     </div>
   </div>
 </section>
+
 
 <section class="section" id="services">
   <div class="wrap">
@@ -623,97 +705,8 @@
   </div>
 </section>
 
-<section class="section" id="projects" style="padding-top:0;">
-  <div class="wrap">
-    <div class="section-head reveal">
-      <div class="label">SELECTED WORK</div>
-      <h2>Landmark projects across the UAE.</h2>
-      <p>A few of the clients and spaces we've delivered fit-outs for since 2020.</p>
-    </div>
 
-    <div class="project reveal">
-      <div class="arch">
-        <img src="images/kempinski-dining.jpg" alt="Finished dining and buffet counter fit-out at Kempinski Hotel, Downtown Dubai">
-      </div>
-      <div>
-        <div class="label tag">HOSPITALITY</div>
-        <h3>Kempinski Hotel, Downtown Dubai</h3>
-        <p>A hospitality fit-out for one of Dubai's landmark hotel brands, covering interior finishes, custom joinery and MEP works front-of-house.</p>
-        <div class="meta">
-          <div><div class="k">CLIENT</div><div class="v">Kempinski</div></div>
-          <div><div class="k">SECTOR</div><div class="v">Hospitality</div></div>
-          <div><div class="k">LOCATION</div><div class="v">Downtown Dubai</div></div>
-        </div>
-      </div>
-    </div>
-
-    <div class="project reveal">
-      <div class="arch">
-        <img src="images/rixos-lobby.jpg" alt="Curved cove-lit ceiling in the lobby at Rixos Premium, Jumeirah Beach Residence">
-      </div>
-      <div>
-        <div class="label tag">HOSPITALITY</div>
-        <h3>Rixos Premium, JBR</h3>
-        <p>Interior fit-out works for Rixos Premium in Jumeirah Beach Residence, from lobby and corridor finishes to custom lighting details.</p>
-        <div class="meta">
-          <div><div class="k">CLIENT</div><div class="v">Rixos Premium</div></div>
-          <div><div class="k">SECTOR</div><div class="v">Hospitality</div></div>
-          <div><div class="k">LOCATION</div><div class="v">JBR, Dubai</div></div>
-        </div>
-      </div>
-    </div>
-
-    <div class="project reveal">
-      <div class="arch">
-        <img src="images/projects/sharjah-showroom-2.jpg" alt="Freestanding bath in front of a backlit arched stone feature wall in a Sharjah bathroom showroom" loading="lazy" decoding="async">
-      </div>
-      <div>
-        <div class="label tag">RETAIL</div>
-        <h3>Bathroom Showroom, Sharjah</h3>
-        <p>A bathroom showroom fit-out in Sharjah, built around arched backlit display bays, feature wall finishes and a lit floor edge that guides visitors from one setting to the next.</p>
-        <div class="meta">
-          <div><div class="k">SECTOR</div><div class="v">Retail</div></div>
-          <div><div class="k">SCOPE</div><div class="v">Showroom fit-out</div></div>
-          <div><div class="k">LOCATION</div><div class="v">Sharjah</div></div>
-        </div>
-      </div>
-    </div>
-
-    <div class="project reveal">
-      <div class="arch">
-        <img src="images/projects/du-academy-1.jpg" alt="Finished training room with a dark coffered ceiling, blue wall and wall lights at the Danube Home Training Academy" loading="lazy" decoding="async">
-      </div>
-      <div>
-        <div class="label tag">TRAINING FACILITY</div>
-        <h3>Danube Home Training Academy</h3>
-        <p>A training academy interior with a dark coffered ceiling, textured wall finishes, warm wall lighting and tiered seating, designed for group sessions.</p>
-        <div class="meta">
-          <div><div class="k">CLIENT</div><div class="v">Danube Home</div></div>
-          <div><div class="k">SECTOR</div><div class="v">Commercial</div></div>
-          <div><div class="k">LOCATION</div><div class="v">Dubai</div></div>
-        </div>
-      </div>
-    </div>
-
-    <div class="project reveal">
-      <div class="arch">
-        <img src="images/projects/ideal-standard-1.jpg" alt="Ideal Standard showroom storefront with arched windows and signage" loading="lazy" decoding="async">
-      </div>
-      <div>
-        <div class="label tag">RETAIL</div>
-        <h3>Ideal Standard Showroom, Abu Dhabi</h3>
-        <p>A showroom fit-out for Casa Milano's Abu Dhabi branch, with a black-clad exterior, arched windows, backlit display walls and track lighting running through the interior.</p>
-        <div class="meta">
-          <div><div class="k">CLIENT</div><div class="v">Casa Milano</div></div>
-          <div><div class="k">SECTOR</div><div class="v">Retail</div></div>
-          <div><div class="k">LOCATION</div><div class="v">Abu Dhabi</div></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="section" id="gallery" style="padding-top:0;">
+<section class="section" id="gallery">
   <div class="wrap">
     <div class="section-head reveal">
       <div class="label">GALLERY</div>
@@ -721,29 +714,30 @@
       <p>Tap any photo to view it full screen.</p>
     </div>
     <div class="gallery-grid" id="gallery-grid">
-      <button type="button" aria-label="Open photo: Sharjah bathroom showroom"><img src="images/projects/sharjah-showroom-2.jpg" alt="Showroom display with a bath under glass pendant lights" loading="lazy" decoding="async"></button>
+      <button type="button" aria-label="Open photo: Danube Home showroom, Sharjah"><img src="images/projects/sharjah-showroom-2.jpg" alt="Showroom display with a bath under glass pendant lights" loading="lazy" decoding="async"></button>
       <button type="button" aria-label="Open photo: Danube Home Training Academy"><img src="images/projects/du-academy-1.jpg" alt="Danube Home Training Academy training room with a coffered ceiling" loading="lazy" decoding="async"></button>
-      <button type="button" aria-label="Open photo: Sharjah bathroom showroom"><img src="images/projects/sharjah-showroom-3.jpg" alt="Freestanding bath against a palm leaf wall covering" loading="lazy" decoding="async"></button>
+      <button type="button" aria-label="Open photo: Danube Home showroom, Sharjah"><img src="images/projects/sharjah-showroom-3.jpg" alt="Freestanding bath against a palm leaf wall covering" loading="lazy" decoding="async"></button>
       <button type="button" aria-label="Open photo: Ideal Standard showroom"><img src="images/projects/ideal-standard-1.jpg" alt="Ideal Standard showroom exterior" loading="lazy" decoding="async"></button>
       <button type="button" aria-label="Open photo: Danube Home Training Academy"><img src="images/projects/du-academy-2.jpg" alt="Training room with a blue wall and wall lights" loading="lazy" decoding="async"></button>
-      <button type="button" aria-label="Open photo: Sharjah bathroom showroom"><img src="images/projects/sharjah-showroom-4.jpg" alt="Palm leaf wall covering behind a freestanding bath" loading="lazy" decoding="async"></button>
+      <button type="button" aria-label="Open photo: Danube Home showroom, Sharjah"><img src="images/projects/sharjah-showroom-4.jpg" alt="Palm leaf wall covering behind a freestanding bath" loading="lazy" decoding="async"></button>
       <button type="button" aria-label="Open photo: Ideal Standard showroom"><img src="images/projects/ideal-standard-2.jpg" alt="Black-clad corner of the Ideal Standard showroom building" loading="lazy" decoding="async"></button>
-      <button type="button" aria-label="Open photo: Sharjah bathroom showroom"><img src="images/projects/sharjah-showroom-6.jpg" alt="Bathroom display with a round mirror, an arched opening and a freestanding bath" loading="lazy" decoding="async"></button>
+      <button type="button" aria-label="Open photo: Danube Home showroom, Sharjah"><img src="images/projects/sharjah-showroom-6.jpg" alt="Bathroom display with a round mirror, an arched opening and a freestanding bath" loading="lazy" decoding="async"></button>
       <button type="button" aria-label="Open photo: Danube Home Training Academy"><img src="images/projects/du-academy-3.jpg" alt="Training room with warm wall lights and a lit ceiling" loading="lazy" decoding="async"></button>
-      <button type="button" aria-label="Open photo: Sharjah bathroom showroom"><img src="images/projects/sharjah-showroom-7.jpg" alt="Freestanding bath with a recessed lit niche and a black-framed shower screen" loading="lazy" decoding="async"></button>
+      <button type="button" aria-label="Open photo: Danube Home showroom, Sharjah"><img src="images/projects/sharjah-showroom-7.jpg" alt="Freestanding bath with a recessed lit niche and a black-framed shower screen" loading="lazy" decoding="async"></button>
       <button type="button" aria-label="Open photo: Ideal Standard showroom"><img src="images/projects/ideal-standard-4.jpg" alt="Ideal Standard showroom interior with backlit display walls" loading="lazy" decoding="async"></button>
-      <button type="button" aria-label="Open photo: Sharjah bathroom showroom"><img src="images/projects/sharjah-showroom-8.jpg" alt="Shower enclosure, wall-hung vanity and an illuminated round mirror" loading="lazy" decoding="async"></button>
-      <button type="button" aria-label="Open photo: Sharjah bathroom showroom"><img src="images/projects/sharjah-showroom-9.jpg" alt="Black-framed shower, tiled feature wall and an illuminated round mirror" loading="lazy" decoding="async"></button>
+      <button type="button" aria-label="Open photo: Danube Home showroom, Sharjah"><img src="images/projects/sharjah-showroom-8.jpg" alt="Shower enclosure, wall-hung vanity and an illuminated round mirror" loading="lazy" decoding="async"></button>
+      <button type="button" aria-label="Open photo: Danube Home showroom, Sharjah"><img src="images/projects/sharjah-showroom-9.jpg" alt="Black-framed shower, tiled feature wall and an illuminated round mirror" loading="lazy" decoding="async"></button>
       <button type="button" aria-label="Open photo: Danube Home Training Academy"><img src="images/projects/du-academy-4.jpg" alt="Training room seen down its length" loading="lazy" decoding="async"></button>
-      <button type="button" aria-label="Open photo: Sharjah bathroom showroom"><img src="images/projects/sharjah-showroom-10.jpg" alt="Showroom walkway with a lit floor edge and bathroom displays" loading="lazy" decoding="async"></button>
+      <button type="button" aria-label="Open photo: Danube Home showroom, Sharjah"><img src="images/projects/sharjah-showroom-10.jpg" alt="Showroom walkway with a lit floor edge and bathroom displays" loading="lazy" decoding="async"></button>
       <button type="button" aria-label="Open photo: Ideal Standard showroom"><img src="images/projects/ideal-standard-5.jpg" alt="Showroom aisle with a round display unit and a planted feature" loading="lazy" decoding="async"></button>
-      <button type="button" aria-label="Open photo: Sharjah bathroom showroom"><img src="images/projects/sharjah-showroom-11.jpg" alt="Bathroom displays with dark basins, mirrors and a lit floor edge" loading="lazy" decoding="async"></button>
+      <button type="button" aria-label="Open photo: Danube Home showroom, Sharjah"><img src="images/projects/sharjah-showroom-11.jpg" alt="Bathroom displays with dark basins, mirrors and a lit floor edge" loading="lazy" decoding="async"></button>
       <button type="button" aria-label="Open photo: Danube Home Training Academy"><img src="images/projects/du-academy-5.jpg" alt="Tiered timber seating in the training room" loading="lazy" decoding="async"></button>
-      <button type="button" aria-label="Open photo: Sharjah bathroom showroom"><img src="images/projects/sharjah-showroom-12.jpg" alt="Whirlpool bath in front of a planted green wall" loading="lazy" decoding="async"></button>
+      <button type="button" aria-label="Open photo: Danube Home showroom, Sharjah"><img src="images/projects/sharjah-showroom-12.jpg" alt="Whirlpool bath in front of a planted green wall" loading="lazy" decoding="async"></button>
       <button type="button" aria-label="Open photo: Danube Home Training Academy"><img src="images/projects/du-academy-6.jpg" alt="Training room with a textured wall and recessed niches" loading="lazy" decoding="async"></button>
     </div>
   </div>
 </section>
+
 
 <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Photo viewer" hidden>
   <button type="button" class="lb-btn lb-close" aria-label="Close">&times;</button>
@@ -1074,6 +1068,15 @@
     if(e.key === 'ArrowLeft') showPhoto(lbIndex - 1);
     if(e.key === 'ArrowRight') showPhoto(lbIndex + 1);
   });
+
+  var projSlider = document.getElementById('proj-slider');
+  function slideBy(dir){
+    var card = projSlider.querySelector('.pcard');
+    var step = card ? card.getBoundingClientRect().width + 20 : 320;
+    projSlider.scrollBy({ left: dir * step, behavior: 'smooth' });
+  }
+  document.getElementById('proj-prev').addEventListener('click', function(){ slideBy(-1); });
+  document.getElementById('proj-next').addEventListener('click', function(){ slideBy(1); });
 
   var waToggle = document.querySelector('.whatsapp-toggle');
   var waOptions = document.getElementById('whatsapp-options');
